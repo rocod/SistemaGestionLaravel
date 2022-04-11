@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PreguntaFrecuenteController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\OpinioneController;
 
 
 /*
@@ -41,6 +42,8 @@ Route::get('eliminarPregunta/{id}', [PreguntaFrecuenteController::class, 'elimin
 Route::delete('eliminarPregunta/{id}', [PreguntaFrecuenteController::class, 'eliminar'])->name('eliminarPregunta');
 
 /*opiniones*/
+Route::get('/opiniones', [OpinioneController::class, 'index'])->name('opiniones');
+Route::match(['put', 'patch'],'editarOpinion/{id}', [OpinioneController::class, 'editar'])->name('editarOpinion');
 
 /*PRODUCTOS*/
 /*categorias*/

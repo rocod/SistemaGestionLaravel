@@ -93,7 +93,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         
                         <a class="collapse-item" href="/preguntas_frecuentes">Preg. Frecuentes</a>
-                        <a class="collapse-item" href="utilities-border.html">Opiniones</a>
+                        <a class="collapse-item" href="/opiniones">Opiniones</a>
                         <a class="collapse-item" href="utilities-animation.html">Home Slider</a>
                         <a class="collapse-item" href="utilities-other.html">Datos de contacto</a>
                         <a class="collapse-item" href="utilities-other.html">Redes Sociales</a>
