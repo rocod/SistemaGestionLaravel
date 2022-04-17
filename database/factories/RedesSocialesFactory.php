@@ -22,7 +22,8 @@ class RedesSocialesFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nombre' => $this->faker->name(),
+            'direccion' => $this->faker->url()
         ];
     }
 }

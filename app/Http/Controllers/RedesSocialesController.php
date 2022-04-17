@@ -7,77 +7,47 @@ use Illuminate\Http\Request;
 
 class RedesSocialesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $redes_sociales = RedesSociales::all();
+
+        return view('seccionesWeb.redesSociales.index', ['redes_sociales' => $redes_sociales]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('seccionesWeb.redesSociales.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre'    => 'required',
+            'direccion' => 'required'
+        ]);
+
+        RedesSociales::create($request->all());
+
+        return redirect('redes_sociales');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\RedesSociales  $redesSociales
-     * @return \Illuminate\Http\Response
-     */
-    public function show(RedesSociales $redesSociales)
+    public function edit(RedesSociales $red_social)
     {
-        //
+        return view('seccionesWeb.redesSociales.edit', ['red_social' => $red_social]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\RedesSociales  $redesSociales
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(RedesSociales $redesSociales)
+    public function update(Request $request, RedesSociales $red_social)
     {
-        //
+        $request->validate([
+            'nombre'    => 'required',
+            'direccion' => 'required'
+        ]);
+
+        $red_social->update($request->all());
+
+        return redirect('redes_sociales');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\RedesSociales  $redesSociales
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, RedesSociales $redesSociales)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\RedesSociales  $redesSociales
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(RedesSociales $redesSociales)
     {
         //

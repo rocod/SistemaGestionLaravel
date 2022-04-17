@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PreguntaFrecuenteController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\OpinioneController;
+use App\Http\Controllers\RedesSocialesController;
 
 
 /*
@@ -45,6 +46,9 @@ Route::delete('eliminarPregunta/{id}', [PreguntaFrecuenteController::class, 'eli
 Route::get('/opiniones', [OpinioneController::class, 'index'])->name('opiniones');
 Route::match(['put', 'patch'],'editarOpinion/{id}', [OpinioneController::class, 'editar'])->name('editarOpinion');
 
+/*redes sociales*/
+Route::resource('redes_sociales', RedesSocialesController::class)->middleware('auth');
+
 /*PRODUCTOS*/
 /*categorias*/
 Route::get('/categorias/{categoria?}/{subcategoria?}', [CategoriaController::class, 'index'])->name('categorias');
@@ -57,7 +61,5 @@ Route::match(['put', 'patch'],'editarCategoria/{id}', [CategoriaController::clas
 /*
 Route::get('eliminarPregunta/{id}', [CategoriaController::class, 'eliminarForm'])->name('eliminarPreguntaForm');
 Route::delete('eliminarPregunta/{id}', [CategoriaController::class, 'eliminar'])->name('eliminarPregunta');*/
-
-
 
 /*FIN SECCIONES WEB*/
