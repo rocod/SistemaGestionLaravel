@@ -35,9 +35,12 @@
                                 </a>
                                </td>
                               <td>
-                               <a title="Eliminar" class="text-info" href="{{ route('eliminarRedSocial', $red_social) }}">
-                                   <i class="far fa-trash-alt fa-2x"></i>
-                                </a>
+                                <form action="{{ route('eliminarRedSocial', $red_social) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="far fa-trash-alt fa-2x">
+                                    </button>
+                                </form>
                               </td>
                             </tr>
                             @endforeach

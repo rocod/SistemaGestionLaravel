@@ -52,7 +52,7 @@ Route::get('/agregarRedSocial', [RedesSocialesController::class, 'create'])->nam
 Route::post('grabarRedSocial', [RedesSocialesController::class, 'store'])->name('grabarRedSocial')->middleware('auth');
 Route::get('/editarRedSocial/{red_social}', [RedesSocialesController::class, 'edit'])->name('editarRedSocialForm')->middleware('auth');
 Route::put('/editarRedSocial/{red_social}', [RedesSocialesController::class, 'update'])->name('editarRedSocial')->middleware('auth');
-Route::delete('eliminarRedSocial/{id}', [RedesSocialesController::class, 'destroy'])->name('eliminarRedSocial')->middleware('auth');
+Route::delete('eliminarRedSocial/{red_social}', [RedesSocialesController::class, 'destroy'])->name('eliminarRedSocial')->middleware('auth');
 
 /*PRODUCTOS*/
 /*categorias*/

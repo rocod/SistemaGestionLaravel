@@ -24,15 +24,18 @@
                                 @method('PUT')
                                 <div class="form-group">
                                     <label for="red" class="form-label">Red Social</label>
-                                    <textarea name="nombre" class="form-control"
-                                        id="red" aria-describedby="red"
-                                        placeholder="Ingrese red social..." required></textarea>
+                                    <input id="red" type="text" class="form-control" aria-describedby="red" required value="{{ old('nombre', $red_social->nombre) }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="direccion_url" class="form-label">Dirección URL</label>
-                                    <textarea name="direccion" class="form-control"
-                                        id="direccion_url" aria-describedby="direccion_url"
-                                        placeholder="Ingrese dirección URL..." required></textarea>
+                                    <textarea 
+                                        name="direccion" 
+                                        class="form-control"
+                                        id="direccion_url" 
+                                        aria-describedby="direccion_url"
+                                        placeholder="Ingrese dirección URL..." 
+                                        required>
+                                    </textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary" title="grabar">Modificar</button>
                             </form>

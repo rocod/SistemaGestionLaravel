@@ -48,8 +48,10 @@ class RedesSocialesController extends Controller
         return redirect('redes_sociales');
     }
 
-    public function destroy(RedesSociales $redesSociales)
+    public function destroy(RedesSociales $red_social)
     {
-        //
+        $red_social->delete();
+
+        return back();
     }
 }
