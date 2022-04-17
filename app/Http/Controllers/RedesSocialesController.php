@@ -16,7 +16,7 @@ class RedesSocialesController extends Controller
 
     public function create()
     {
-        return view('seccionesWeb.redesSociales.create');
+        return view('seccionesWeb.redesSociales.agregarRedSocial');
     }
 
     public function store(Request $request)
@@ -33,7 +33,7 @@ class RedesSocialesController extends Controller
 
     public function edit(RedesSociales $red_social)
     {
-        return view('seccionesWeb.redesSociales.edit', ['red_social' => $red_social]);
+        return view('seccionesWeb.redesSociales.editarRedSocialForm', ['red_social' => $red_social]);
     }
 
     public function update(Request $request, RedesSociales $red_social)

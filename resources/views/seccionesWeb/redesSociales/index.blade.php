@@ -18,7 +18,7 @@
                               <th scope="col">Dirección</th>
                               <th scope="col"></th>
                               <th scope="col">
-                                <a class="text-success" href="{{ route('redes_sociales.create') }}" title="Agregar nueva red social">
+                                <a class="text-success" href="/agregarRedSocial" title="Agregar nueva red social">
                                     <i class="fas fa-plus-circle fa-2x "></i>
                                 </a>
                               </th>
@@ -30,12 +30,12 @@
                               <td>{{ $red_social->nombre }}</td>
                               <td>{{ $red_social->direccion }}</td>
                               <td>
-                                <a title="Editar" class="text-info" href="{{ route('redes_sociales.edit', $red_social) }}">
+                                <a title="Editar" class="text-info" href="{{ route('editarRedSocialForm', $red_social) }}">
                                     <i class="fas fa-pencil-alt fa-2x"></i>
                                 </a>
                                </td>
                               <td>
-                               <a title="Eliminar" class="text-info" href="{{ route('redes_sociales.destroy', $red_social) }}">
+                               <a title="Eliminar" class="text-info" href="{{ route('eliminarRedSocial', $red_social) }}">
                                    <i class="far fa-trash-alt fa-2x"></i>
                                 </a>
                               </td>

@@ -5,7 +5,7 @@ use App\Http\Controllers\PreguntaFrecuenteController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\OpinioneController;
 use App\Http\Controllers\RedesSocialesController;
-
+use App\Models\RedesSociales;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +47,12 @@ Route::get('/opiniones', [OpinioneController::class, 'index'])->name('opiniones'
 Route::match(['put', 'patch'],'editarOpinion/{id}', [OpinioneController::class, 'editar'])->name('editarOpinion');
 
 /*redes sociales*/
-Route::resource('redes_sociales', RedesSocialesController::class)->middleware('auth');
+Route::get('/redes_sociales', [RedesSocialesController::class, 'index'])->middleware('auth');
+Route::get('/agregarRedSocial', [RedesSocialesController::class, 'create'])->name('agregarRedSocial')->middleware('auth');
+Route::post('grabarRedSocial', [RedesSocialesController::class, 'store'])->name('grabarRedSocial')->middleware('auth');
+Route::get('/editarRedSocial/{red_social}', [RedesSocialesController::class, 'edit'])->name('editarRedSocialForm')->middleware('auth');
+Route::put('/editarRedSocial/{red_social}', [RedesSocialesController::class, 'update'])->name('editarRedSocial')->middleware('auth');
+Route::delete('eliminarRedSocial/{id}', [RedesSocialesController::class, 'destroy'])->name('eliminarRedSocial')->middleware('auth');
 
 /*PRODUCTOS*/
 /*categorias*/

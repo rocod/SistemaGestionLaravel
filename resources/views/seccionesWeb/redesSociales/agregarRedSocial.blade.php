@@ -11,7 +11,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <h3 class="text-primary">Editar</h3>
+                            <h3 class="text-primary">Crear nueva</h3>
                         </div>
                         
                     </div>
@@ -19,9 +19,7 @@
                     <div class="row">
 
                         <div class="col-md-6 offset-md-3">
-                           <form method="POST" action="{{ route('redes_sociales.update' , $red_social) }}" enctype="multipart/form-data">
-                                @csrf
-                                @method('PUT')
+                           <form method="post" action="{{ route('grabarRedSocial')}}">
                                 <div class="form-group">
                                     <label for="red" class="form-label">Red Social</label>
                                     <textarea name="nombre" class="form-control"
@@ -34,7 +32,8 @@
                                         id="direccion_url" aria-describedby="direccion_url"
                                         placeholder="Ingrese dirección URL..." required></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary" title="grabar">Modificar</button>
+                                <button type="submit" class="btn btn-primary" title="grabar">Grabar</button>
+                                @csrf
                             </form>
                         </div>
                      
