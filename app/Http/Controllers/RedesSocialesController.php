@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers;
 
@@ -44,6 +44,8 @@ class RedesSocialesController extends Controller
         ]);
 
         $red_social->update($request->all());
+
+        session()->flash('success', 'La Red Social se editó con éxito');
 
         return redirect('redes_sociales');
     }

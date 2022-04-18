@@ -24,7 +24,7 @@
                                 @method('PUT')
                                 <div class="form-group">
                                     <label for="red" class="form-label">Red Social</label>
-                                    <input id="red" type="text" class="form-control" aria-describedby="red" required value="{{ old('nombre', $red_social->nombre) }}">
+                                    <input id="red" name="nombre" type="text" class="form-control" aria-describedby="red" required value="{{ old('nombre', $red_social->nombre) }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="direccion_url" class="form-label">Dirección URL</label>
