@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class FormaPago extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'forma_pago',
+        'provincia',
+        'localidad',
+        'cp',
+        'direccion',
+        'telefono',
+        'estado'
+    ];
 }

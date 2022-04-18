@@ -16,11 +16,11 @@ class CreateFormaPagosTable extends Migration
         Schema::create('forma_pagos', function (Blueprint $table) {
             $table->id();
             $table->string('forma_pago');
-            $table->string('provincia');
-            $table->string('localidad');
-            $table->string('cp');
-            $table->string('direccion');
-            $table->string('telefono');
+            $table->string('provincia')->nullable();
+            $table->string('localidad')->nullable();
+            $table->string('cp')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('telefono')->nullable();
             $table->Integer('estado');
             $table->timestamps();
         });

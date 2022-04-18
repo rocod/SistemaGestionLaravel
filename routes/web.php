@@ -5,7 +5,8 @@ use App\Http\Controllers\PreguntaFrecuenteController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\OpinioneController;
 use App\Http\Controllers\RedesSocialesController;
-use App\Models\RedesSociales;
+use App\Http\Controllers\FormaPagoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -48,11 +49,11 @@ Route::match(['put', 'patch'],'editarOpinion/{id}', [OpinioneController::class, 
 
 /*redes sociales*/
 Route::get('/redes_sociales', [RedesSocialesController::class, 'index'])->middleware('auth');
-Route::get('/agregarRedSocial', [RedesSocialesController::class, 'create'])->name('agregarRedSocial')->middleware('auth');
-Route::post('grabarRedSocial', [RedesSocialesController::class, 'store'])->name('grabarRedSocial')->middleware('auth');
+// Route::get('/agregarRedSocial', [RedesSocialesController::class, 'create'])->name('agregarRedSocial')->middleware('auth');
+// Route::post('grabarRedSocial', [RedesSocialesController::class, 'store'])->name('grabarRedSocial')->middleware('auth');
 Route::get('/editarRedSocial/{red_social}', [RedesSocialesController::class, 'edit'])->name('editarRedSocialForm')->middleware('auth');
 Route::put('/editarRedSocial/{red_social}', [RedesSocialesController::class, 'update'])->name('editarRedSocial')->middleware('auth');
-Route::delete('eliminarRedSocial/{red_social}', [RedesSocialesController::class, 'destroy'])->name('eliminarRedSocial')->middleware('auth');
+// Route::delete('eliminarRedSocial/{red_social}', [RedesSocialesController::class, 'destroy'])->name('eliminarRedSocial')->middleware('auth');
 
 /*PRODUCTOS*/
 /*categorias*/
@@ -68,3 +69,12 @@ Route::get('eliminarPregunta/{id}', [CategoriaController::class, 'eliminarForm']
 Route::delete('eliminarPregunta/{id}', [CategoriaController::class, 'eliminar'])->name('eliminarPregunta');*/
 
 /*FIN SECCIONES WEB*/
+
+/*VENTAS*/
+/*formas de pago*/
+Route::get('/formas_de_pago', [FormaPagoController::class, 'index'])->middleware('auth');
+Route::get('/agregarFormaDePago', [FormaPagoController::class, 'create'])->name('agregarFormaDePago')->middleware('auth');
+Route::post('grabarFormaDePago', [FormaPagoController::class, 'store'])->name('grabarFormaDePago')->middleware('auth');
+Route::get('/editarFormaDePago/{forma_de_pago}', [FormaPagoController::class, 'edit'])->name('editarFormaDePagoForm')->middleware('auth');
+Route::put('/editarFormaDePago/{forma_de_pago}', [FormaPagoController::class, 'update'])->name('editarFormaDePago')->middleware('auth');
+Route::delete('eliminarFormaDePago/{forma_de_pago}', [FormaPagoController::class, 'destroy'])->name('eliminarFormaDePago')->middleware('auth');
