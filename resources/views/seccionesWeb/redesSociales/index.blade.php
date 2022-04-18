@@ -14,13 +14,15 @@
                         <table class="table table-striped">
                           <thead>
                             <tr>
-                              <th scope="col">Red</th>
+                              <th scope="col">Red Social</th>
                               <th scope="col">Dirección</th>
-                              <th scope="col"></th>
-                              <th scope="col">
+                              {{-- <th scope="col">
                                 <a class="text-success" href="/agregarRedSocial" title="Agregar nueva red social">
                                     <i class="fas fa-plus-circle fa-2x "></i>
                                 </a>
+                              </th> --}}
+                              <th scope="col">
+                                Modificar
                               </th>
                             </tr>
                           </thead>
@@ -33,15 +35,15 @@
                                 <a title="Editar" class="text-info" href="{{ route('editarRedSocialForm', $red_social) }}">
                                     <i class="fas fa-pencil-alt fa-2x"></i>
                                 </a>
-                               </td>
-                              <td>
+                              </td>
+                              {{-- <td>
                                 <form action="{{ route('eliminarRedSocial', $red_social) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button class="far fa-trash-alt fa-2x">
                                     </button>
                                 </form>
-                              </td>
+                              </td> --}}
                             </tr>
                             @endforeach
                             

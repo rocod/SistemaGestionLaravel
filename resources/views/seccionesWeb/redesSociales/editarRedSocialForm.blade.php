@@ -19,7 +19,7 @@
                     <div class="row">
 
                         <div class="col-md-6 offset-md-3">
-                           <form method="POST" action="{{ route('editarRedSocial' , $red_social) }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('editarRedSocial' , $red_social) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">

@@ -14,22 +14,22 @@ class RedesSocialesController extends Controller
         return view('seccionesWeb.redesSociales.index', ['redes_sociales' => $redes_sociales]);
     }
 
-    public function create()
-    {
-        return view('seccionesWeb.redesSociales.agregarRedSocial');
-    }
+    // public function create()
+    // {
+    //     return view('seccionesWeb.redesSociales.agregarRedSocial');
+    // }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nombre'    => 'required',
-            'direccion' => 'required'
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'nombre'    => 'required',
+    //         'direccion' => 'required'
+    //     ]);
 
-        RedesSociales::create($request->all());
+    //     RedesSociales::create($request->all());
 
-        return redirect('redes_sociales');
-    }
+    //     return redirect('redes_sociales');
+    // }
 
     public function edit(RedesSociales $red_social)
     {
@@ -48,10 +48,10 @@ class RedesSocialesController extends Controller
         return redirect('redes_sociales');
     }
 
-    public function destroy(RedesSociales $red_social)
-    {
-        $red_social->delete();
+    // public function destroy(RedesSociales $red_social)
+    // {
+    //     $red_social->delete();
 
-        return back();
-    }
+    //     return back();
+    // }
 }
