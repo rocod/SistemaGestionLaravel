@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class TerminalRetiro extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nombre',
+        'telefono',
+        'direccion',
+        'email',
+        'estado'
+    ];
 }

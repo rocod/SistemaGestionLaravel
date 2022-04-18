@@ -16,9 +16,9 @@ class CreateTerminalRetirosTable extends Migration
         Schema::create('terminal_retiros', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('telefono');
-            $table->string('direccion');
-            $table->string('email');
+            $table->string('telefono')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('email')->nullable();
             $table->integer('estado');
             $table->timestamps();
         });

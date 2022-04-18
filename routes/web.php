@@ -7,6 +7,7 @@ use App\Http\Controllers\OpinioneController;
 use App\Http\Controllers\RedesSocialesController;
 use App\Http\Controllers\FormaPagoController;
 use App\Http\Controllers\FormaEnvioController;
+use App\Http\Controllers\TerminalRetiroController;
 
 
 /*
@@ -87,3 +88,11 @@ Route::post('grabarFormaDeEnvio', [FormaEnvioController::class, 'store'])->name(
 Route::get('/editarFormaDeEnvio/{forma_de_envio}', [FormaEnvioController::class, 'edit'])->name('editarFormaDeEnvioForm')->middleware('auth');
 Route::put('/editarFormaDeEnvio/{forma_de_envio}', [FormaEnvioController::class, 'update'])->name('editarFormaDeEnvio')->middleware('auth');
 Route::delete('eliminarFormaDeEnvio/{forma_de_envio}', [FormaEnvioController::class, 'destroy'])->name('eliminarFormaDeEnvio')->middleware('auth');
+
+/*terminal retiro*/
+Route::get('/terminal_retiro', [TerminalRetiroController::class, 'index'])->middleware('auth');
+Route::get('/agregarTerminalRetiro', [TerminalRetiroController::class, 'create'])->name('agregarTerminalRetiro')->middleware('auth');
+Route::post('grabarTerminalRetiro', [TerminalRetiroController::class, 'store'])->name('grabarTerminalRetiro')->middleware('auth');
+Route::get('/editarTerminalRetiro/{terminal_retiro}', [TerminalRetiroController::class, 'edit'])->name('editarTerminalRetiroForm')->middleware('auth');
+Route::put('/editarTerminalRetiro/{terminal_retiro}', [TerminalRetiroController::class, 'update'])->name('editarTerminalRetiro')->middleware('auth');
+Route::delete('eliminarTerminalRetiro/{terminal_retiro}', [TerminalRetiroController::class, 'destroy'])->name('eliminarTerminalRetiro')->middleware('auth');

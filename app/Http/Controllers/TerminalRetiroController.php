@@ -7,79 +7,51 @@ use Illuminate\Http\Request;
 
 class TerminalRetiroController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $terminales_retiro = TerminalRetiro::where('estado', 1)->get();
+
+        return view('ventas.terminalRetiro.index', ['terminales_retiro' => $terminales_retiro]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('ventas.terminalRetiro.agregarTerminalRetiro');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate(['nombre' => 'required']);
+
+        TerminalRetiro::create(['estado' => 1] + $request->all());
+
+        session()->flash('success', 'La termianl de Retiro se creó con éxito');
+
+        return redirect('terminal_retiro');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\TerminalRetiro  $terminalRetiro
-     * @return \Illuminate\Http\Response
-     */
-    public function show(TerminalRetiro $terminalRetiro)
+    public function edit(TerminalRetiro $terminal_retiro)
     {
-        //
+        return view('ventas.terminalRetiro.editarTerminalRetiroForm', ['terminal_retiro' => $terminal_retiro]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\TerminalRetiro  $terminalRetiro
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(TerminalRetiro $terminalRetiro)
+    public function update(Request $request, TerminalRetiro $terminal_retiro)
     {
-        //
+        $request->validate(['nombre' => 'required']);
+        
+        $terminal_retiro->update($request->all());
+
+        session()->flash('success', 'La terminal de Retiro se editó con éxito');
+
+        return redirect('terminal_retiro');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TerminalRetiro  $terminalRetiro
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, TerminalRetiro $terminalRetiro)
+    public function destroy(TerminalRetiro $terminal_retiro)
     {
-        //
-    }
+        $terminal_retiro->update(['estado' => 0]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\TerminalRetiro  $terminalRetiro
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(TerminalRetiro $terminalRetiro)
-    {
-        //
+        session()->flash('success', 'La terminal de Retiro se eliminó con éxito');
+
+        return back();
     }
 }
