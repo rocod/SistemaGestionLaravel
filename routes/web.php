@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\OpinioneController;
 use App\Http\Controllers\RedesSocialesController;
 use App\Http\Controllers\FormaPagoController;
+use App\Http\Controllers\FormaEnvioController;
 
 
 /*
@@ -78,3 +79,11 @@ Route::post('grabarFormaDePago', [FormaPagoController::class, 'store'])->name('g
 Route::get('/editarFormaDePago/{forma_de_pago}', [FormaPagoController::class, 'edit'])->name('editarFormaDePagoForm')->middleware('auth');
 Route::put('/editarFormaDePago/{forma_de_pago}', [FormaPagoController::class, 'update'])->name('editarFormaDePago')->middleware('auth');
 Route::delete('eliminarFormaDePago/{forma_de_pago}', [FormaPagoController::class, 'destroy'])->name('eliminarFormaDePago')->middleware('auth');
+
+/*formas de envio*/
+Route::get('/formas_de_envio', [FormaEnvioController::class, 'index'])->middleware('auth');
+Route::get('/agregarFormaDeEnvio', [FormaEnvioController::class, 'create'])->name('agregarFormaDeEnvio')->middleware('auth');
+Route::post('grabarFormaDeEnvio', [FormaEnvioController::class, 'store'])->name('grabarFormaDeEnvio')->middleware('auth');
+Route::get('/editarFormaDeEnvio/{forma_de_envio}', [FormaEnvioController::class, 'edit'])->name('editarFormaDeEnvioForm')->middleware('auth');
+Route::put('/editarFormaDeEnvio/{forma_de_envio}', [FormaEnvioController::class, 'update'])->name('editarFormaDeEnvio')->middleware('auth');
+Route::delete('eliminarFormaDeEnvio/{forma_de_envio}', [FormaEnvioController::class, 'destroy'])->name('eliminarFormaDeEnvio')->middleware('auth');

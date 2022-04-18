@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class FormaEnvio extends Model
 {
     use HasFactory;
+    
+    protected $fillable = [
+        'forma_envio',
+        'estado'
+    ];
 }

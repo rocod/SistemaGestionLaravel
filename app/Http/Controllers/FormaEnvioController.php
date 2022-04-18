@@ -7,79 +7,51 @@ use Illuminate\Http\Request;
 
 class FormaEnvioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $formas_de_envio = FormaEnvio::where('estado', 1)->get();
+
+        return view('ventas.formasDeEnvio.index', ['formas_de_envio' => $formas_de_envio]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('ventas.formasDeEnvio.agregarFormaDeEnvio');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate(['forma_envio' => 'required']);
+
+        FormaEnvio::create(['estado' => 1] + $request->all());
+
+        session()->flash('success', 'La forma de pago se creó con éxito');
+
+        return redirect('formas_de_envio');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\FormaEnvio  $formaEnvio
-     * @return \Illuminate\Http\Response
-     */
-    public function show(FormaEnvio $formaEnvio)
+    public function edit(FormaEnvio $forma_de_envio)
     {
-        //
+        return view('ventas.formasDeEnvio.editarFormaDeEnvioForm', ['forma_de_envio' => $forma_de_envio]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\FormaEnvio  $formaEnvio
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(FormaEnvio $formaEnvio)
+    public function update(Request $request, FormaEnvio $forma_de_envio)
     {
-        //
+        $request->validate(['forma_envio' => 'required']);
+        
+        $forma_de_envio->update($request->all());
+
+        session()->flash('success', 'La forma de envío se editó con éxito');
+
+        return redirect('formas_de_envio');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FormaEnvio  $formaEnvio
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, FormaEnvio $formaEnvio)
+    public function destroy(FormaEnvio $forma_de_envio)
     {
-        //
-    }
+        $forma_de_envio->update(['estado' => 0]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\FormaEnvio  $formaEnvio
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(FormaEnvio $formaEnvio)
-    {
-        //
+        session()->flash('success', 'La forma de envío se eliminó con éxito');
+
+        return back();
     }
 }
