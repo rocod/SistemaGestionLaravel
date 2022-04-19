@@ -36,6 +36,19 @@ Route::get('/clear-cache', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
 
+/*PRODUCTOS*/
+/*categorias*/
+Route::get('/categorias/{categoria?}/{subcategoria?}', [CategoriaController::class, 'index'])->name('categorias');
+
+Route::get('/agregar_categoria', [CategoriaController::class, 'agregarForm'])->name('agregarCategoria');
+Route::post('grabarCategoria', [CategoriaController::class, 'grabar'])->name('grabarCategoria');
+
+Route::get('editarCategoria/{id}', [CategoriaController::class, 'editarForm'])->name('editarCategoriaForm');
+Route::match(['put', 'patch'],'editarCategoria/{id}', [CategoriaController::class, 'editar'])->name('editarCategoria');
+
+/*FIN PRODUCTOS*/
+
+
 /*SECCIONES WEB*/
 /*Preguntas Frecuentes*/
 Route::get('/preguntas_frecuentes', [PreguntaFrecuenteController::class, 'index'])->name('preguntasFrecuentes');
@@ -45,6 +58,10 @@ Route::get('editarPregunta/{id}', [PreguntaFrecuenteController::class, 'editarFo
 Route::match(['put', 'patch'],'editarPregunta/{id}', [PreguntaFrecuenteController::class, 'editar'])->name('editarPregunta');
 Route::get('eliminarPregunta/{id}', [PreguntaFrecuenteController::class, 'eliminarForm'])->name('eliminarPreguntaForm');
 Route::delete('eliminarPregunta/{id}', [PreguntaFrecuenteController::class, 'eliminar'])->name('eliminarPregunta');
+
+/*
+Route::get('eliminarPregunta/{id}', [CategoriaController::class, 'eliminarForm'])->name('eliminarPreguntaForm');
+Route::delete('eliminarPregunta/{id}', [CategoriaController::class, 'eliminar'])->name('eliminarPregunta');*/
 
 /*opiniones*/
 Route::get('/opiniones', [OpinioneController::class, 'index'])->name('opiniones');
@@ -58,20 +75,8 @@ Route::get('/editarRedSocial/{red_social}', [RedesSocialesController::class, 'ed
 Route::put('/editarRedSocial/{red_social}', [RedesSocialesController::class, 'update'])->name('editarRedSocial')->middleware('auth');
 // Route::delete('eliminarRedSocial/{red_social}', [RedesSocialesController::class, 'destroy'])->name('eliminarRedSocial')->middleware('auth');
 
-/*PRODUCTOS*/
-/*categorias*/
-Route::get('/categorias/{categoria?}/{subcategoria?}', [CategoriaController::class, 'index'])->name('categorias');
-
-Route::get('/agregar_categoria', [CategoriaController::class, 'agregarForm'])->name('agregarCategoria');
-Route::post('grabarCategoria', [CategoriaController::class, 'grabar'])->name('grabarCategoria');
-
-Route::get('editarCategoria/{id}', [CategoriaController::class, 'editarForm'])->name('editarCategoriaForm');
-Route::match(['put', 'patch'],'editarCategoria/{id}', [CategoriaController::class, 'editar'])->name('editarCategoria');
-/*
-Route::get('eliminarPregunta/{id}', [CategoriaController::class, 'eliminarForm'])->name('eliminarPreguntaForm');
-Route::delete('eliminarPregunta/{id}', [CategoriaController::class, 'eliminar'])->name('eliminarPregunta');*/
-
 /*FIN SECCIONES WEB*/
+
 
 /*VENTAS*/
 /*formas de pago*/
@@ -105,6 +110,5 @@ Route::post('grabarContrareembolso', [ContrarrembolsoEmpresaController::class, '
 Route::get('/editarContrareembolso/{contrarrembolso_empresa}', [ContrarrembolsoEmpresaController::class, 'edit'])->name('editarContrareembolsoForm')->middleware('auth');
 Route::put('/editarContrareembolso/{contrarrembolso_empresa}', [ContrarrembolsoEmpresaController::class, 'update'])->name('editarContrareembolso')->middleware('auth');
 Route::delete('eliminarContrareembolso/{contrarrembolso_empresa}', [ContrarrembolsoEmpresaController::class, 'destroy'])->name('eliminarContrareembolso')->middleware('auth');
-
 
 /*FIN VENTAS*/ 

@@ -17,7 +17,7 @@ class CreateCategoriasTable extends Migration
             $table->id();
             $table->string('opcion');
             $table->integer('orden');
-            $table->integer('oculta');
+            $table->boolean('oculta');
             $table->timestamps();
         });
     }
