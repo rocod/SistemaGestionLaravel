@@ -8,6 +8,7 @@ use App\Http\Controllers\RedesSocialesController;
 use App\Http\Controllers\FormaPagoController;
 use App\Http\Controllers\FormaEnvioController;
 use App\Http\Controllers\TerminalRetiroController;
+use App\Http\Controllers\ContrarrembolsoEmpresaController;
 
 
 /*
@@ -96,3 +97,14 @@ Route::post('grabarTerminalRetiro', [TerminalRetiroController::class, 'store'])-
 Route::get('/editarTerminalRetiro/{terminal_retiro}', [TerminalRetiroController::class, 'edit'])->name('editarTerminalRetiroForm')->middleware('auth');
 Route::put('/editarTerminalRetiro/{terminal_retiro}', [TerminalRetiroController::class, 'update'])->name('editarTerminalRetiro')->middleware('auth');
 Route::delete('eliminarTerminalRetiro/{terminal_retiro}', [TerminalRetiroController::class, 'destroy'])->name('eliminarTerminalRetiro')->middleware('auth');
+
+/*contrareembolsos*/
+Route::get('/contrareembolsos', [ContrarrembolsoEmpresaController::class, 'index'])->middleware('auth');
+Route::get('/agregarContrareembolso', [ContrarrembolsoEmpresaController::class, 'create'])->name('agregarContrareembolso')->middleware('auth');
+Route::post('grabarContrareembolso', [ContrarrembolsoEmpresaController::class, 'store'])->name('grabarContrareembolso')->middleware('auth');
+Route::get('/editarContrareembolso/{contrarrembolso_empresa}', [ContrarrembolsoEmpresaController::class, 'edit'])->name('editarContrareembolsoForm')->middleware('auth');
+Route::put('/editarContrareembolso/{contrarrembolso_empresa}', [ContrarrembolsoEmpresaController::class, 'update'])->name('editarContrareembolso')->middleware('auth');
+Route::delete('eliminarContrareembolso/{contrarrembolso_empresa}', [ContrarrembolsoEmpresaController::class, 'destroy'])->name('eliminarContrareembolso')->middleware('auth');
+
+
+/*FIN VENTAS*/ 

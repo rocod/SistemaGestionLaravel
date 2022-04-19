@@ -16,10 +16,10 @@ class CreateContrarrembolsoEmpresasTable extends Migration
         Schema::create('contrarrembolso_empresas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('telefono');
-            $table->string('email');
-            $table->string('direccion');
-            $table->bigInteger('id_estado')->unsigned()->default(0);
+            $table->string('telefono')->nullable();
+            $table->string('email')->nullable();
+            $table->string('direccion')->nullable();
+            $table->bigInteger('id_estado')->unsigned()->default(1);
             $table->timestamps();
 
             $table->foreign('id_estado')->references('id')->on('contrarrebolso_estados');
