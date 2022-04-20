@@ -48,7 +48,7 @@ class FormaEnvioController extends Controller
 
     public function eliminarForm(FormaEnvio $forma_de_envio)
     {
-        return view('ventas.formasDePago.eliminarFormaDePagoForm', compact('forma_de_envio'));
+        return view('ventas.formasDeEnvio.eliminarFormaDeEnvioForm', compact('forma_de_envio'));
     }
 
     public function destroy(FormaEnvio $forma_de_envio)

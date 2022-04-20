@@ -25,7 +25,7 @@ class TerminalRetiroController extends Controller
 
         TerminalRetiro::create(['estado' => 1] + $request->all());
 
-        session()->flash('success', 'La termianl de Retiro se creó con éxito');
+        session()->flash('success', 'La terminal de Retiro se creó con éxito');
 
         return redirect('terminal_retiro');
     }
@@ -48,7 +48,7 @@ class TerminalRetiroController extends Controller
 
     public function eliminarForm(TerminalRetiro $terminal_retiro)
     {
-        return view('ventas.formasDePago.eliminarFormaDePagoForm', compact('terminal_retiro'));
+        return view('ventas.terminalRetiro.eliminarTerminalRetiroForm', compact('terminal_retiro'));
     }
 
     public function destroy(TerminalRetiro $terminal_retiro)

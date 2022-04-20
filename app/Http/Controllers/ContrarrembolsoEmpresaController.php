@@ -52,7 +52,7 @@ class ContrarrembolsoEmpresaController extends Controller
 
     public function eliminarForm(contrarrembolso_empresa $contrarrembolso_empresa)
     {
-        return view('ventas.formasDePago.eliminarFormaDePagoForm', compact('contrarrembolso_empresa'));
+        return view('ventas.contrareembolso.eliminarContrareembolsoForm', compact('contrarrembolso_empresa'));
     }
 
 

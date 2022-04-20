@@ -40,13 +40,10 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <form action="{{ route('eliminarContrareembolso', $contrarrembolso_empresa) }}" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="far fa-trash-alt fa-2x">
-                                            </button>
-                                        </form>
-                                    </td>
+                                        <a title="Eliminar" class="text-info" href="{{ route('eliminarContrareembolsoForm', $contrarrembolso_empresa) }}">
+                                            <i class="far fa-trash-alt fa-2x"></i>
+                                        </a>
+                                    </td> 
                                     <td></td>
                                 </tr>
                                 @endforeach

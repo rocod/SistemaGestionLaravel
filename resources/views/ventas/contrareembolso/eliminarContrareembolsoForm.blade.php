@@ -6,13 +6,13 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Formas de pago</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Contrareembolsos</h1>
 
                     </div>
                     <div class="row">
                         <div class="col">
-                            <h3 class="text-primary">Eliminar forma de pago</h3>
-                            <p class="text-danger text-center"><b>Esta por eliminar esta forma de pago de manera permanente, para confirmar presione Eliminar</b></p>
+                            <h3 class="text-primary">Eliminar contrareembolso</h3>
+                            <p class="text-danger text-center"><b>Esta por eliminar este contrareembolso de manera permanente, para confirmar presione Eliminar</b></p>
                         </div>
                         
                     </div>
@@ -20,16 +20,14 @@
                     <div class="row">
 
                         <div class="col-md-6 offset-md-3">
-                            <form method="post" action="{{ route('eliminarFormaDePago' , $forma_de_pago)}}">
+                            <form method="post" action="{{ route('eliminarContrareembolso' , $contrarrembolso_empresa)}}">
                                 @csrf
                                 @method('DELETE')
                                 
-                                <p>Forma de pago: {{ $forma_de_pago->forma_pago }}</p>
-                                <p>Provincia: {{ $forma_de_pago->provincia }}</p>
-                                <p>Localidad: {{ $forma_de_pago->localidad }}</p>
-                                <p>Código postal: {{ $forma_de_pago->cp }}</p>
-                                <p>Dirección: {{ $forma_de_pago->direccion }}</p>
-                                <p>Teléfono: {{ $forma_de_pago->telefono }}</p>
+                                <p>Nombre: {{ $contrarrembolso_empresa->nombre }}</p>
+                                <p>Télefono: {{ $contrarrembolso_empresa->telefono }}</p>
+                                <p>E-mail: {{ $contrarrembolso_empresa->email }}</p>
+                                <p>Dirección: {{ $contrarrembolso_empresa->direccion }}</p>
                                 
                                 <button type="submit" class="btn btn-primary" title="grabar">Eliminar</button>
                             

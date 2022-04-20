@@ -34,12 +34,9 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <form action="{{ route('eliminarFormaDeEnvio', $forma_de_envio) }}" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="far fa-trash-alt fa-2x">
-                                            </button>
-                                        </form>
+                                        <a title="Eliminar" class="text-info" href="{{ route('eliminarFormaDeEnvioForm', $forma_de_envio) }}">
+                                            <i class="far fa-trash-alt fa-2x"></i>
+                                        </a>
                                     </td>
                                     <td></td>
                                 </tr>

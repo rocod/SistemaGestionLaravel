@@ -85,7 +85,7 @@ Route::get('/agregarFormaDePago', [FormaPagoController::class, 'create'])->name(
 Route::post('grabarFormaDePago', [FormaPagoController::class, 'store'])->name('grabarFormaDePago')->middleware('auth');
 Route::get('/editarFormaDePago/{forma_de_pago}', [FormaPagoController::class, 'edit'])->name('editarFormaDePagoForm')->middleware('auth');
 Route::put('/editarFormaDePago/{forma_de_pago}', [FormaPagoController::class, 'update'])->name('editarFormaDePago')->middleware('auth');
-Route::get('eliminarFormaDePago/{forma_de_pago}', [FormaPagoController::class, 'eliminarForm'])->name('eliminarFormaDePagoForm');
+Route::get('eliminarFormaDePago/{forma_de_pago}', [FormaPagoController::class, 'eliminarForm'])->name('eliminarFormaDePagoForm')->middleware('auth');
 Route::delete('eliminarFormaDePago/{forma_de_pago}', [FormaPagoController::class, 'destroy'])->name('eliminarFormaDePago')->middleware('auth');
 
 /*formas de envio*/
@@ -94,6 +94,7 @@ Route::get('/agregarFormaDeEnvio', [FormaEnvioController::class, 'create'])->nam
 Route::post('grabarFormaDeEnvio', [FormaEnvioController::class, 'store'])->name('grabarFormaDeEnvio')->middleware('auth');
 Route::get('/editarFormaDeEnvio/{forma_de_envio}', [FormaEnvioController::class, 'edit'])->name('editarFormaDeEnvioForm')->middleware('auth');
 Route::put('/editarFormaDeEnvio/{forma_de_envio}', [FormaEnvioController::class, 'update'])->name('editarFormaDeEnvio')->middleware('auth');
+Route::get('eliminarFormaDeEnvio/{forma_de_envio}', [FormaEnvioController::class, 'eliminarForm'])->name('eliminarFormaDeEnvioForm')->middleware('auth');
 Route::delete('eliminarFormaDeEnvio/{forma_de_envio}', [FormaEnvioController::class, 'destroy'])->name('eliminarFormaDeEnvio')->middleware('auth');
 
 /*terminal retiro*/
@@ -102,6 +103,7 @@ Route::get('/agregarTerminalRetiro', [TerminalRetiroController::class, 'create']
 Route::post('grabarTerminalRetiro', [TerminalRetiroController::class, 'store'])->name('grabarTerminalRetiro')->middleware('auth');
 Route::get('/editarTerminalRetiro/{terminal_retiro}', [TerminalRetiroController::class, 'edit'])->name('editarTerminalRetiroForm')->middleware('auth');
 Route::put('/editarTerminalRetiro/{terminal_retiro}', [TerminalRetiroController::class, 'update'])->name('editarTerminalRetiro')->middleware('auth');
+Route::get('eliminarTerminalRetiro/{terminal_retiro}', [TerminalRetiroController::class, 'eliminarForm'])->name('eliminarTerminalRetiroForm')->middleware('auth');
 Route::delete('eliminarTerminalRetiro/{terminal_retiro}', [TerminalRetiroController::class, 'destroy'])->name('eliminarTerminalRetiro')->middleware('auth');
 
 /*contrareembolsos*/
@@ -110,6 +112,7 @@ Route::get('/agregarContrareembolso', [ContrarrembolsoEmpresaController::class, 
 Route::post('grabarContrareembolso', [ContrarrembolsoEmpresaController::class, 'store'])->name('grabarContrareembolso')->middleware('auth');
 Route::get('/editarContrareembolso/{contrarrembolso_empresa}', [ContrarrembolsoEmpresaController::class, 'edit'])->name('editarContrareembolsoForm')->middleware('auth');
 Route::put('/editarContrareembolso/{contrarrembolso_empresa}', [ContrarrembolsoEmpresaController::class, 'update'])->name('editarContrareembolso')->middleware('auth');
+Route::get('eliminarContrareembolso/{contrarrembolso_empresa}', [ContrarrembolsoEmpresaController::class, 'eliminarForm'])->name('eliminarContrareembolsoForm')->middleware('auth');
 Route::delete('eliminarContrareembolso/{contrarrembolso_empresa}', [ContrarrembolsoEmpresaController::class, 'destroy'])->name('eliminarContrareembolso')->middleware('auth');
 
 /*FIN VENTAS*/ 

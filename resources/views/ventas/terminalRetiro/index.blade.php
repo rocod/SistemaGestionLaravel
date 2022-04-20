@@ -40,13 +40,18 @@
                                         </a>
                                     </td>
                                     <td>
+                                        <a title="Eliminar" class="text-info" href="{{ route('eliminarTerminalRetiroForm', $terminal_retiro) }}">
+                                            <i class="far fa-trash-alt fa-2x"></i>
+                                        </a>
+                                    </td> 
+                                    {{-- <td>
                                         <form action="{{ route('eliminarTerminalRetiro', $terminal_retiro) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             <button class="far fa-trash-alt fa-2x">
                                             </button>
                                         </form>
-                                    </td>
+                                    </td> --}}
                                     <td></td>
                                 </tr>
                                 @endforeach
