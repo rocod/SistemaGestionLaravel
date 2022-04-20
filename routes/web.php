@@ -85,6 +85,7 @@ Route::get('/agregarFormaDePago', [FormaPagoController::class, 'create'])->name(
 Route::post('grabarFormaDePago', [FormaPagoController::class, 'store'])->name('grabarFormaDePago')->middleware('auth');
 Route::get('/editarFormaDePago/{forma_de_pago}', [FormaPagoController::class, 'edit'])->name('editarFormaDePagoForm')->middleware('auth');
 Route::put('/editarFormaDePago/{forma_de_pago}', [FormaPagoController::class, 'update'])->name('editarFormaDePago')->middleware('auth');
+Route::get('eliminarFormaDePago/{forma_de_pago}', [FormaPagoController::class, 'eliminarForm'])->name('eliminarFormaDePagoForm');
 Route::delete('eliminarFormaDePago/{forma_de_pago}', [FormaPagoController::class, 'destroy'])->name('eliminarFormaDePago')->middleware('auth');
 
 /*formas de envio*/

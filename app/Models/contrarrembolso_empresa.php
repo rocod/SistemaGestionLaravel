@@ -16,7 +16,7 @@ class contrarrembolso_empresa extends Model
         'telefono',
         'email',
         'direccion',
-        'id_estado'
+        'estado'
     ];
 
     public function estado()

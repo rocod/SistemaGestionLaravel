@@ -46,12 +46,17 @@ class FormaPagoController extends Controller
         return redirect('formas_de_pago');
     }
 
+    public function eliminarForm(FormaPago $forma_de_pago)
+    {
+        return view('ventas.formasDePago.eliminarFormaDePagoForm', compact('forma_de_pago'));
+    }
+
     public function destroy(FormaPago $forma_de_pago)
     {
         $forma_de_pago->update(['estado' => 0]);
 
         session()->flash('success', 'La forma de pago se eliminó con éxito');
 
-        return back();
+        return redirect('formas_de_pago');
     }
 }

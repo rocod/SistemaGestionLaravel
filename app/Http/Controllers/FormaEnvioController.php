@@ -46,12 +46,17 @@ class FormaEnvioController extends Controller
         return redirect('formas_de_envio');
     }
 
+    public function eliminarForm(FormaEnvio $forma_de_envio)
+    {
+        return view('ventas.formasDePago.eliminarFormaDePagoForm', compact('forma_de_envio'));
+    }
+
     public function destroy(FormaEnvio $forma_de_envio)
     {
         $forma_de_envio->update(['estado' => 0]);
 
         session()->flash('success', 'La forma de envío se eliminó con éxito');
 
-        return back();
+        return redirect('formas_de_envio');
     }
 }

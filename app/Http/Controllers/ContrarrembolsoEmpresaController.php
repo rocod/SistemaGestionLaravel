@@ -9,7 +9,7 @@ class ContrarrembolsoEmpresaController extends Controller
 {
     public function index()
     {
-        $contrareembolsos = contrarrembolso_empresa::all();
+        $contrareembolsos = contrarrembolso_empresa::where('estado', 1)->get();
 
         return view('ventas.contrareembolso.index', ['contrareembolsos' => $contrareembolsos]);
     }
@@ -50,12 +50,18 @@ class ContrarrembolsoEmpresaController extends Controller
         return redirect('contrareembolsos');
     }
 
+    public function eliminarForm(contrarrembolso_empresa $contrarrembolso_empresa)
+    {
+        return view('ventas.formasDePago.eliminarFormaDePagoForm', compact('contrarrembolso_empresa'));
+    }
+
+
     public function destroy(contrarrembolso_empresa $contrarrembolso_empresa)
     {
-        $contrarrembolso_empresa->delete();
+        $contrarrembolso_empresa->update(['estado' => 0]);
 
         session()->flash('success', 'El contrareembolso se eliminó con éxito');
 
-        return back();
+        return redirect('contrareembolsos');
     }
 }

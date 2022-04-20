@@ -46,12 +46,17 @@ class TerminalRetiroController extends Controller
         return redirect('terminal_retiro');
     }
 
+    public function eliminarForm(TerminalRetiro $terminal_retiro)
+    {
+        return view('ventas.formasDePago.eliminarFormaDePagoForm', compact('terminal_retiro'));
+    }
+
     public function destroy(TerminalRetiro $terminal_retiro)
     {
         $terminal_retiro->update(['estado' => 0]);
 
         session()->flash('success', 'La terminal de Retiro se eliminó con éxito');
 
-        return back();
+        return redirect('terminal_retiro');
     }
 }

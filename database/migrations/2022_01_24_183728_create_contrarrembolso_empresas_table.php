@@ -19,10 +19,11 @@ class CreateContrarrembolsoEmpresasTable extends Migration
             $table->string('telefono')->nullable();
             $table->string('email')->nullable();
             $table->string('direccion')->nullable();
-            $table->bigInteger('id_estado')->unsigned()->default(1);
+            $table->boolean('estado')->default(1);
+            // $table->bigInteger('id_estado')->unsigned()->default(1);
             $table->timestamps();
 
-            $table->foreign('id_estado')->references('id')->on('contrarrebolso_estados');
+            // $table->foreign('id_estado')->references('id')->on('contrarrebolso_estados');
         });
     }
 

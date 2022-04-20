@@ -44,13 +44,18 @@
                                         </a>
                                     </td>
                                     <td>
+                                        <a title="Eliminar" class="text-info" href="{{ route('eliminarFormaDePagoForm', $forma_de_pago) }}">
+                                            <i class="far fa-trash-alt fa-2x"></i>
+                                        </a>
+                                    </td>                                 
+                                    {{-- <td>
                                         <form action="{{ route('eliminarFormaDePago', $forma_de_pago) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             <button class="far fa-trash-alt fa-2x">
                                             </button>
                                         </form>
-                                    </td>
+                                    </td> --}}
                                     <td></td>
                                 </tr>
                                 @endforeach
