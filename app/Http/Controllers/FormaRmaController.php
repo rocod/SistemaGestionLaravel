@@ -7,79 +7,51 @@ use Illuminate\Http\Request;
 
 class FormaRmaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $formas_rma = FormaRma::where('estado', 1)->get();
+
+        return view('ventas.formasRMA.index', compact('formas_rma'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('ventas.formasRMA.agregarFormaRMA');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate(['forma_rma' => 'required']);
+
+        FormaRma::create(['estado' => 1] + $request->all());
+
+        return redirect('formas_rma');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\FormaRma  $formaRma
-     * @return \Illuminate\Http\Response
-     */
-    public function show(FormaRma $formaRma)
+    public function edit(FormaRma $forma_rma)
     {
-        //
+        return view('ventas.formasRMA.editarFormaRMAForm', compact('forma_rma'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\FormaRma  $formaRma
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(FormaRma $formaRma)
+    public function update(Request $request, FormaRma $forma_rma)
     {
-        //
+        $request->validate(['forma_rma' => 'required']);
+        
+        $forma_rma->update($request->all());
+
+        return redirect('formas_rma');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FormaRma  $formaRma
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, FormaRma $formaRma)
+    public function eliminarForm(FormaRma $forma_rma)
     {
-        //
+        return view('ventas.formasRMA.eliminarFormaRMAForm', compact('forma_rma'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\FormaRma  $formaRma
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(FormaRma $formaRma)
+
+    public function destroy(FormaRma $forma_rma)
     {
-        //
+        $forma_rma->update(['estado' => 0]);
+
+        return redirect('formas_rma');
     }
 }

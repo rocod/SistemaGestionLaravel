@@ -9,6 +9,7 @@ use App\Http\Controllers\FormaPagoController;
 use App\Http\Controllers\FormaEnvioController;
 use App\Http\Controllers\TerminalRetiroController;
 use App\Http\Controllers\ContrarrembolsoEmpresaController;
+use App\Http\Controllers\FormaRmaController;
 
 
 /*
@@ -114,5 +115,14 @@ Route::get('/editarContrareembolso/{contrarrembolso_empresa}', [ContrarrembolsoE
 Route::put('/editarContrareembolso/{contrarrembolso_empresa}', [ContrarrembolsoEmpresaController::class, 'update'])->name('editarContrareembolso')->middleware('auth');
 Route::get('eliminarContrareembolso/{contrarrembolso_empresa}', [ContrarrembolsoEmpresaController::class, 'eliminarForm'])->name('eliminarContrareembolsoForm')->middleware('auth');
 Route::delete('eliminarContrareembolso/{contrarrembolso_empresa}', [ContrarrembolsoEmpresaController::class, 'destroy'])->name('eliminarContrareembolso')->middleware('auth');
+
+/*formas RMA*/
+Route::get('/formas_rma', [FormaRmaController::class, 'index'])->middleware('auth');
+Route::get('/agregarFormaRMA', [FormaRmaController::class, 'create'])->name('agregarFormaRMA')->middleware('auth');
+Route::post('grabarFormaRMA', [FormaRmaController::class, 'store'])->name('grabarFormaRMA')->middleware('auth');
+Route::get('/editarFormaRMA/{forma_rma}', [FormaRmaController::class, 'edit'])->name('editarFormaRMAForm')->middleware('auth');
+Route::put('/editarFormaRMA/{forma_rma}', [FormaRmaController::class, 'update'])->name('editarFormaRMA')->middleware('auth');
+Route::get('eliminarFormaRMA/{forma_rma}', [FormaRmaController::class, 'eliminarForm'])->name('eliminarFormaRMAForm')->middleware('auth');
+Route::delete('eliminarFormaRMA/{forma_rma}', [FormaRmaController::class, 'destroy'])->name('eliminarFormaRMA')->middleware('auth');
 
 /*FIN VENTAS*/ 

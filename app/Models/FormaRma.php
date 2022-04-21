@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class FormaRma extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'forma_rma',
+        'estado'
+    ];
 }
