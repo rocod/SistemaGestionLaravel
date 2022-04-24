@@ -3,20 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gasto;
+use App\Models\GastoConcepto;
 use Illuminate\Http\Request;
 
 class GastoController extends Controller
 {
     public function index()
     {
-        $gastos = Gasto::all();
+        $gastos = Gasto::latest()->get();
 
         return view('usoExterno.gastos.index', compact('gastos'));
     }
 
     public function create()
     {
-        return view('usoExterno.gastos.agregarGasto');
+        $conceptos = GastoConcepto::where('estado', 1)->get();
+
+        return view('usoExterno.gastos.agregarGasto', compact('conceptos'));
     }
 
     public function store(Request $request)
@@ -36,7 +39,9 @@ class GastoController extends Controller
 
     public function edit(Gasto $gasto)
     {
-        return view('usoExterno.gastos.editarGastoForm', compact('gasto'));
+        $conceptos = GastoConcepto::where('estado', 1)->get();
+
+        return view('usoExterno.gastos.editarGastoForm', compact('gasto', 'conceptos'));
     }
 
     public function update(Request $request, Gasto $gasto)

@@ -7,7 +7,9 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Gastos</h1>
+                            <a class="btn btn-outline-primary" href="{{ url('conceptos') }}">Conceptos</a>
                     </div>
+
 
                     <div class="row">
 
@@ -30,7 +32,7 @@
                                 @foreach($gastos as $gasto)
                                 <tr>
                                     <td>{{ $gasto->fecha }}</td>
-                                    <td>{{ $gasto->monto }}</td>
+                                    <td>${{ $gasto->monto }}</td>
                                     <td>{{ $gasto->id_concepto }}</td>
                                     <td>
                                         <a title="Editar" class="text-info" href="{{ route('editarGastoForm', $gasto) }}">

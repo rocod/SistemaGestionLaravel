@@ -26,11 +26,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="monto" class="form-label">Monto</label>
-                                    <input name="monto" type="text" class="form-control" id="monto" aria-describedby="monto" required>
+                                    <input name="monto" type="number" class="form-control" id="monto" aria-describedby="monto" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="concepto" class="form-label">Concepto</label>
-                                    <input name="id_concepto" type="text" class="form-control" id="concepto" aria-describedby="concepto" required>
+                                    {{-- <input name="id_concepto" type="text" class="form-control" id="concepto" aria-describedby="concepto" required> --}}
+                                    <select name="id_concepto">
+                                        @foreach ($conceptos as $concepto)
+                                            <option class="form-control" value="{{ $concepto->id }}">{{ $concepto->concepto }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary" title="grabar">Grabar</button>
                                 @csrf

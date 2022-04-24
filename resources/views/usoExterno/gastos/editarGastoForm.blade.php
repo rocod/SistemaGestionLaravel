@@ -32,7 +32,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="concepto" class="form-label">Concepto</label>
-                                    <input name="id_concepto" type="text" class="form-control" id="concepto" aria-describedby="concepto" value="{{ old('concepto', $gasto->id_concepto) }}">
+                                    {{-- <input name="id_concepto" type="text" class="form-control" id="concepto" aria-describedby="concepto" required> --}}
+                                    <select name="id_concepto">
+                                        @foreach ($conceptos as $concepto)
+                                            <option class="form-control" value="{{ $concepto->id }}">{{ $concepto->concepto }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary" title="grabar">Modificar</button>
                             </form>
