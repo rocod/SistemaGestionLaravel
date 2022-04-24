@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Gasto;
 use App\Models\GastoConcepto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GastoController extends Controller
 {
@@ -72,5 +73,21 @@ class GastoController extends Controller
         session()->flash('success', 'El gasto se eliminó con éxito');
 
         return redirect('gastos');
+    }
+
+    public function buscador(Request $request)
+    {
+        $fromDate = $request->input('fromDate');
+        $toDate = $request->input('toDate');
+
+        $query = DB::table('gastos')->select()
+            ->where('fecha', '>=', $fromDate)
+            ->where('fecha', '<=', $toDate)
+            ->get();
+        // dd($query);
+
+        $gastos = Gasto::latest()->get();
+
+        return view('usoExterno.gastos.index', compact('query', 'gastos'));
     }
 }
