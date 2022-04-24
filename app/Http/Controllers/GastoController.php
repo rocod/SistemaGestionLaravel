@@ -9,11 +9,17 @@ use Illuminate\Support\Facades\DB;
 
 class GastoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $gastos = Gasto::latest()->get();
+        $query_one = $request->get('search');
+        $query_two = $request->get('search_two');
 
-        return view('usoExterno.gastos.index', compact('gastos'));
+        $gastos = Gasto::where('fecha', 'LIKE', '%' . $query_one . '%')
+            ->orWhereBetween('fecha', [$query_one, $query_two])
+            ->orderBy('fecha', 'desc')
+            ->get();
+
+        return view('usoExterno.gastos.index', compact('gastos', 'query_one', 'query_two'));
     }
 
     public function create()

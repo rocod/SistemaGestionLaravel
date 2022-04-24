@@ -10,30 +10,24 @@
                             <a class="btn btn-outline-primary" href="{{ url('conceptos') }}">Conceptos</a>
                     </div>
 
-                    <form action="{{ route('buscadorGastos') }}" method="POST">
-                        @csrf
-                        <br>
-                        <div class="container">
-                            <div class="row">
-                                <div class="container-fluid">
-                                    <div class="form-group row">
-                                        <label for="date" class="col-form-label col-sm-2">Desde</label>
-                                        <div class="col-sm-3">
-                                            <input type="date" class="form-control input-sm" name="fromDate" required>
-                                        </div>
-                                        <label for="date" class="col-form-label col-sm-2">Hasta</label>
-                                        <div class="col-sm-3">
-                                            <input type="date" class="form-control input-sm" name="toDate" required>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button type="submit" class="btn" name="search" title="buscar">Buscar</button>
-                                        </div>
-                                    </div>
-                                </div>
+
+                    <h5>Filtar gastos</h5>
+                    <form>
+                        <div class="d-flex align-items-center">
+                            <div class="form-group">
+                                <label for="fecha" class="form-label">Fecha desde</label>
+                                <input class="form-control" type="date" name="search" class="rounded-md py-1 text-black">
+                            </div>
+                            <div class="form-group ml-2">
+                                <label for="fecha" class="form-label">Fecha hasta</label>
+                                <input class="form-control" type="date" name="search_two" class="rounded-md py-1 text-black">
+                            </div>
+                            <div class="ml-2 mt-4">
+                                <button type="submit" class="btn btn-primary mb-2">Buscar</button>
                             </div>
                         </div>
-                        <br>
                     </form>
+
 
                     <div class="row">
                         <table class="table table-striped">

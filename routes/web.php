@@ -163,7 +163,6 @@ Route::delete('eliminarConcepto/{concepto}', [GastoConceptoController::class, 'd
 
 /*Gastos*/
 Route::get('/gastos', [GastoController::class, 'index'])->middleware('auth');
-Route::post('/gastos', [GastoController::class, 'buscador'])->name('buscadorGastos')->middleware('auth');
 Route::get('/agregarGasto', [GastoController::class, 'create'])->name('agregarGasto')->middleware('auth');
 Route::post('grabarGasto', [GastoController::class, 'store'])->name('grabarGasto')->middleware('auth');
 Route::get('/editarGasto/{gasto}', [GastoController::class, 'edit'])->name('editarGastoForm')->middleware('auth');
