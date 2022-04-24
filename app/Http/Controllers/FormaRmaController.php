@@ -25,6 +25,8 @@ class FormaRmaController extends Controller
 
         FormaRma::create(['estado' => 1] + $request->all());
 
+        session()->flash('success', 'La forma de RMA se creó con éxito');
+
         return redirect('formas_rma');
     }
 
@@ -39,6 +41,8 @@ class FormaRmaController extends Controller
         
         $forma_rma->update($request->all());
 
+        session()->flash('success', 'La forma de RMA se editó con éxito');
+
         return redirect('formas_rma');
     }
 
@@ -51,6 +55,8 @@ class FormaRmaController extends Controller
     public function destroy(FormaRma $forma_rma)
     {
         $forma_rma->update(['estado' => 0]);
+        
+        session()->flash('success', 'La forma de RMA se eliminó con éxito');
 
         return redirect('formas_rma');
     }

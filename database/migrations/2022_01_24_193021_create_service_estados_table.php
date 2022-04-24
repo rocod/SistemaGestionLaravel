@@ -16,7 +16,7 @@ class CreateServiceEstadosTable extends Migration
         Schema::create('service_estados', function (Blueprint $table) {
             $table->id();
             $table->string('estado');
-            $table->string('mensaje', 500);
+            $table->string('mensaje', 500)->nullable();
             $table->timestamps();
         });
     }

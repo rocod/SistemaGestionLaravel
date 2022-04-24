@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ServiceConsola extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'consola'
+    ];
 }

@@ -7,79 +7,57 @@ use Illuminate\Http\Request;
 
 class ServiceEstadoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $estados_reparacion = ServiceEstado::all();
+
+        return view('servicee.estados.index', compact('estados_reparacion'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('servicee.estados.agregarEstadoReparacion');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate(['estado' => 'required']);
+
+        ServiceEstado::create(['estado' => strtoupper($request->estado)] + $request->all());
+
+        session()->flash('success', 'El estado de reparación se creó con éxito');
+
+        return redirect('estados_reparacion');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ServiceEstado  $serviceEstado
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ServiceEstado $serviceEstado)
+    public function edit(ServiceEstado $estado_reparacion)
     {
-        //
+        return view('servicee.estados.editarEstadoReparacionForm', compact('estado_reparacion'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ServiceEstado  $serviceEstado
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ServiceEstado $serviceEstado)
+    public function update(Request $request, ServiceEstado $estado_reparacion)
     {
-        //
+        $request->validate(['estado' => 'required']);
+        
+        $estado_reparacion->update(['estado' => strtoupper($request->estado)] + $request->all());
+
+        session()->flash('success', 'El estado de reparación se editó con éxito');
+
+        return redirect('estados_reparacion');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ServiceEstado  $serviceEstado
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ServiceEstado $serviceEstado)
+    public function eliminarForm(ServiceEstado $estado_reparacion)
     {
-        //
+        return view('servicee.estados.eliminarEstadoReparacionForm', compact('estado_reparacion'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ServiceEstado  $serviceEstado
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ServiceEstado $serviceEstado)
+
+    public function destroy(ServiceEstado $estado_reparacion)
     {
-        //
+        $estado_reparacion->delete();
+        
+        session()->flash('success', 'El estado de reparación se eliminó con éxito');
+
+        return redirect('estados_reparacion');
     }
 }

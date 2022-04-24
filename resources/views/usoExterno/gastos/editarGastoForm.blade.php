@@ -1,0 +1,47 @@
+@extends('layouts.interior')
+
+@section('content')
+<!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Gastos</h1>
+
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="text-primary">Editar</h3>
+                        </div>
+                        
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6 offset-md-3">
+                            <form method="POST" action="{{ route('editarGasto' , $gasto) }}" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                <div class="form-group">
+                                    <label for="fecha" class="form-label">Fecha</label>
+                                    <input name="fecha" type="date" class="form-control" id="fecha" aria-describedby="fecha" required value="{{ old('fecha', $gasto->fecha) }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="monto" class="form-label">Monto</label>
+                                    <input name="monto" type="text" class="form-control" id="monto" aria-describedby="monto" value="{{ old('monto', $gasto->monto) }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="concepto" class="form-label">Concepto</label>
+                                    <input name="id_concepto" type="text" class="form-control" id="concepto" aria-describedby="concepto" value="{{ old('concepto', $gasto->id_concepto) }}">
+                                </div>
+                                <button type="submit" class="btn btn-primary" title="grabar">Modificar</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+@endsection

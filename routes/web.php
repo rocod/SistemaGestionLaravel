@@ -10,6 +10,10 @@ use App\Http\Controllers\FormaEnvioController;
 use App\Http\Controllers\TerminalRetiroController;
 use App\Http\Controllers\ContrarrembolsoEmpresaController;
 use App\Http\Controllers\FormaRmaController;
+use App\Http\Controllers\ServiceConsolaController;
+use App\Http\Controllers\ServiceEstadoController;
+use App\Http\Controllers\GastoConceptoController;
+use App\Http\Controllers\GastoController;
 
 
 /*
@@ -126,3 +130,45 @@ Route::get('eliminarFormaRMA/{forma_rma}', [FormaRmaController::class, 'eliminar
 Route::delete('eliminarFormaRMA/{forma_rma}', [FormaRmaController::class, 'destroy'])->name('eliminarFormaRMA')->middleware('auth');
 
 /*FIN VENTAS*/ 
+
+/*SERVICE*/
+/*Modelos de consola*/
+Route::get('/modelos_consolas', [ServiceConsolaController::class, 'index'])->middleware('auth');
+Route::get('/agregarConsola', [ServiceConsolaController::class, 'create'])->name('agregarConsola')->middleware('auth');
+Route::post('grabarConsola', [ServiceConsolaController::class, 'store'])->name('grabarConsola')->middleware('auth');
+Route::get('/editarConsola/{consola}', [ServiceConsolaController::class, 'edit'])->name('editarConsolaForm')->middleware('auth');
+Route::put('/editarConsola/{consola}', [ServiceConsolaController::class, 'update'])->name('editarConsola')->middleware('auth');
+Route::get('eliminarConsola/{consola}', [ServiceConsolaController::class, 'eliminarForm'])->name('eliminarConsolaForm')->middleware('auth');
+Route::delete('eliminarConsola/{consola}', [ServiceConsolaController::class, 'destroy'])->name('eliminarConsola')->middleware('auth');
+
+/*Estados de reparación*/
+Route::get('/estados_reparacion', [ServiceEstadoController::class, 'index'])->middleware('auth');
+Route::get('/agregarEstadoReparacion', [ServiceEstadoController::class, 'create'])->name('agregarEstadoReparacion')->middleware('auth');
+Route::post('grabarEstadoReparacion', [ServiceEstadoController::class, 'store'])->name('grabarEstadoReparacion')->middleware('auth');
+Route::get('/editarEstadoReparacion/{estado_reparacion}', [ServiceEstadoController::class, 'edit'])->name('editarEstadoReparacionForm')->middleware('auth');
+Route::put('/editarEstadoReparacion/{estado_reparacion}', [ServiceEstadoController::class, 'update'])->name('editarEstadoReparacion')->middleware('auth');
+Route::get('eliminarEstadoReparacion/{estado_reparacion}', [ServiceEstadoController::class, 'eliminarForm'])->name('eliminarEstadoReparacionForm')->middleware('auth');
+Route::delete('eliminarEstadoReparacion/{estado_reparacion}', [ServiceEstadoController::class, 'destroy'])->name('eliminarEstadoReparacion')->middleware('auth');
+/*FIN SERVICE*/
+
+/*USO EXTERNO*/
+/*Conceptos*/
+Route::get('/conceptos', [GastoConceptoController::class, 'index'])->middleware('auth');
+Route::get('/agregarConcepto', [GastoConceptoController::class, 'create'])->name('agregarConcepto')->middleware('auth');
+Route::post('grabarConcepto', [GastoConceptoController::class, 'store'])->name('grabarConcepto')->middleware('auth');
+Route::get('/editarConcepto/{concepto}', [GastoConceptoController::class, 'edit'])->name('editarConceptoForm')->middleware('auth');
+Route::put('/editarConcepto/{concepto}', [GastoConceptoController::class, 'update'])->name('editarConcepto')->middleware('auth');
+Route::get('eliminarConcepto/{concepto}', [GastoConceptoController::class, 'eliminarForm'])->name('eliminarConceptoForm')->middleware('auth');
+Route::delete('eliminarConcepto/{concepto}', [GastoConceptoController::class, 'destroy'])->name('eliminarConcepto')->middleware('auth');
+
+/*Gastos*/
+Route::get('/gastos', [GastoController::class, 'index'])->middleware('auth');
+Route::get('/agregarGasto', [GastoController::class, 'create'])->name('agregarGasto')->middleware('auth');
+Route::post('grabarGasto', [GastoController::class, 'store'])->name('grabarGasto')->middleware('auth');
+Route::get('/editarGasto/{gasto}', [GastoController::class, 'edit'])->name('editarGastoForm')->middleware('auth');
+Route::put('/editarGasto/{gasto}', [GastoController::class, 'update'])->name('editarGasto')->middleware('auth');
+Route::get('eliminarGasto/{gasto}', [GastoController::class, 'eliminarForm'])->name('eliminarGastoForm')->middleware('auth');
+Route::delete('eliminarGasto/{gasto}', [GastoController::class, 'destroy'])->name('eliminarGasto')->middleware('auth');
+/*FIN USO EXTERNO*/
+
+

@@ -7,79 +7,56 @@ use Illuminate\Http\Request;
 
 class ServiceConsolaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $consolas = ServiceConsola::all();
+
+        return view('servicee.consolas.index', compact('consolas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('servicee.consolas.agregarConsola');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate(['consola' => 'required']);
+
+        ServiceConsola::create($request->all());
+
+        session()->flash('success', 'La consola se creó con éxito');
+
+        return redirect('modelos_consolas');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ServiceConsola  $serviceConsola
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ServiceConsola $serviceConsola)
+    public function edit(ServiceConsola $consola)
     {
-        //
+        return view('servicee.consolas.editarConsolaForm', compact('consola'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ServiceConsola  $serviceConsola
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ServiceConsola $serviceConsola)
+    public function update(Request $request, ServiceConsola $consola)
     {
-        //
+        $request->validate(['consola' => 'required']);
+        
+        $consola->update($request->all());
+
+        session()->flash('success', 'La consola se editó con éxito');
+
+        return redirect('modelos_consolas');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ServiceConsola  $serviceConsola
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ServiceConsola $serviceConsola)
+    public function eliminarForm(ServiceConsola $consola)
     {
-        //
+        return view('servicee.consolas.eliminarConsolaForm', compact('consola'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ServiceConsola  $serviceConsola
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ServiceConsola $serviceConsola)
+    public function destroy(ServiceConsola $consola)
     {
-        //
+        $consola->delete();
+
+        session()->flash('success', 'La consola se eliminó con éxito');
+
+        return redirect('modelos_consolas');
     }
 }

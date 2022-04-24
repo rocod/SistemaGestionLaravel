@@ -7,79 +7,57 @@ use Illuminate\Http\Request;
 
 class GastoConceptoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $conceptos = GastoConcepto::where('estado', 1)->get();
+
+        return view('usoExterno.conceptos.index', compact('conceptos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('usoExterno.conceptos.agregarConcepto');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate(['concepto' => 'required']);
+
+        GastoConcepto::create(['estado' => 1] + $request->all());
+
+        session()->flash('success', 'El concepto se creó con éxito');
+
+        return redirect('conceptos');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\GastoConcepto  $gastoConcepto
-     * @return \Illuminate\Http\Response
-     */
-    public function show(GastoConcepto $gastoConcepto)
+    public function edit(GastoConcepto $concepto)
     {
-        //
+        return view('usoExterno.conceptos.editarConceptoForm', compact('concepto'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\GastoConcepto  $gastoConcepto
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(GastoConcepto $gastoConcepto)
+    public function update(Request $request, GastoConcepto $concepto)
     {
-        //
+        $request->validate(['concepto' => 'required']);
+        
+        $concepto->update($request->all());
+
+        session()->flash('success', 'El concepto se editó con éxito');
+
+        return redirect('conceptos');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\GastoConcepto  $gastoConcepto
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, GastoConcepto $gastoConcepto)
+    public function eliminarForm(GastoConcepto $concepto)
     {
-        //
+        return view('usoExterno.conceptos.eliminarConceptoForm', compact('concepto'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\GastoConcepto  $gastoConcepto
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(GastoConcepto $gastoConcepto)
+
+    public function destroy(GastoConcepto $concepto)
     {
-        //
+        $concepto->update(['estado' => 0]);
+        
+        session()->flash('success', 'El concepto se eliminó con éxito');
+
+        return redirect('conceptos');
     }
 }

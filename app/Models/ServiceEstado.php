@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ServiceEstado extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'estado',
+        'mensaje'
+    ];
 }
