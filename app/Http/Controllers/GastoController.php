@@ -11,15 +11,18 @@ class GastoController extends Controller
 {
     public function index(Request $request)
     {
-        $query_one = $request->get('search');
+        $query_one = $request->get('search_one');
         $query_two = $request->get('search_two');
+        $query = $request->get('search');
 
-        $gastos = Gasto::where('fecha', 'LIKE', '%' . $query_one . '%')
+        $gastos = Gasto::where('id_concepto', 'LIKE', '%' . $query . '%')
             ->orWhereBetween('fecha', [$query_one, $query_two])
             ->orderBy('fecha', 'desc')
             ->get();
 
-        return view('usoExterno.gastos.index', compact('gastos', 'query_one', 'query_two'));
+        $conceptos = GastoConcepto::all();
+
+        return view('usoExterno.gastos.index', compact('gastos', 'query_one', 'query_two', 'query', 'conceptos'));
     }
 
     public function create()

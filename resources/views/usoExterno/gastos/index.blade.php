@@ -16,11 +16,20 @@
                         <div class="d-flex align-items-center">
                             <div class="form-group">
                                 <label for="fecha" class="form-label">Fecha desde</label>
-                                <input class="form-control" type="date" name="search" class="rounded-md py-1 text-black">
+                                <input class="form-control" type="date" name="search_one" class="rounded-md py-1 text-black">
                             </div>
                             <div class="form-group ml-2">
                                 <label for="fecha" class="form-label">Fecha hasta</label>
                                 <input class="form-control" type="date" name="search_two" class="rounded-md py-1 text-black">
+                            </div>
+                            <div class="form-group ml-2">
+                                <label class="form-label">Concepto</label>
+                                <select name="search">
+                                    <option class="form-control" value="">Todos</option>
+                                    @foreach ($conceptos as $concepto)
+                                        <option class="form-control" value="{{ $concepto->id }}">{{ $concepto->concepto }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="ml-2 mt-4">
                                 <button type="submit" class="btn btn-primary mb-2">Buscar</button>
