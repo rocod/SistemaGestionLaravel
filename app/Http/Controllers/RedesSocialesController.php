@@ -39,7 +39,7 @@ class RedesSocialesController extends Controller
     public function update(Request $request, RedesSociales $red_social)
     {
         $request->validate([
-            'nombre'    => 'required',
+            'nombre'    => 'required|max:30',
             'direccion' => 'required'
         ]);
 

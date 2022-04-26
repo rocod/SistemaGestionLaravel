@@ -21,7 +21,10 @@ class ServiceEstadoController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['estado' => 'required']);
+        $request->validate([
+            'estado'  => 'required|max:30',
+            'mensaje' => 'max:500'
+        ]);
 
         ServiceEstado::create(['estado' => strtoupper($request->estado)] + $request->all());
 
@@ -37,7 +40,10 @@ class ServiceEstadoController extends Controller
 
     public function update(Request $request, ServiceEstado $estado_reparacion)
     {
-        $request->validate(['estado' => 'required']);
+        $request->validate([
+            'estado'  => 'required|max:30',
+            'mensaje' => 'max:500'
+        ]);
         
         $estado_reparacion->update(['estado' => strtoupper($request->estado)] + $request->all());
 

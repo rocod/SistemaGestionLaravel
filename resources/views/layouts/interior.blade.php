@@ -96,7 +96,7 @@
                         <a class="collapse-item" href="/opiniones">Opiniones</a>
                         <a class="collapse-item" href="utilities-animation.html">Home Slider</a>
                         <a class="collapse-item" href="utilities-other.html">Datos de contacto</a>
-                        <a class="collapse-item" href="utilities-other.html">Redes Sociales</a>
+                        <a class="collapse-item" href="redes_sociales">Redes Sociales</a>
                     </div>
                 </div>
             </li>
@@ -120,12 +120,12 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         
                         <a class="collapse-item" href="login.html">Ventas</a>
-                        <a class="collapse-item" href="register.html">Formas de pago</a>
-                        <a class="collapse-item" href="forgot-password.html">Formas de envío</a>                       
-                        <a class="collapse-item" href="404.html">Terminal Retiro</a>
+                        <a class="collapse-item" href="formas_de_pago">Formas de pago</a>
+                        <a class="collapse-item" href="formas_de_envio">Formas de envío</a>                       
+                        <a class="collapse-item" href="terminal_retiro">Terminal Retiro</a>
                         <a class="collapse-item" href="blank.html">Depósito</a>
-                        <a class="collapse-item" href="blank.html">Contrarrembolsos</a>
-                        <a class="collapse-item" href="blank.html">Formas de RMA</a>
+                        <a class="collapse-item" href="contrareembolsos">Contrarrembolsos</a>
+                        <a class="collapse-item" href="formas_rma">Formas de RMA</a>
                         <a class="collapse-item" href="blank.html">Dolar</a>
                     </div>
                 </div>
@@ -179,8 +179,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         
                         <a class="collapse-item" href="utilities-color.html">Reparaciones</a>
-                        <a class="collapse-item" href="utilities-border.html">Modelos Consola</a>
-                        <a class="collapse-item" href="utilities-animation.html">Estado Reparación</a>
+                        <a class="collapse-item" href="modelos_consolas">Modelos Consola</a>
+                        <a class="collapse-item" href="estados_reparacion">Estado Reparación</a>
                         
                     </div>
                 </div>
@@ -208,7 +208,7 @@
                         <a class="collapse-item" href="utilities-color.html">Formulario</a>
                         <a class="collapse-item" href="utilities-border.html">Listado Formulario</a>
                         <a class="collapse-item" href="utilities-animation.html">Newsletter</a>
-                        <a class="collapse-item" href="utilities-animation.html">Gastos</a>
+                        <a class="collapse-item" href="gastos">Gastos</a>
                         <a class="collapse-item" href="utilities-animation.html">Exportar suscripciones</a>
                         <a class="collapse-item" href="utilities-animation.html">Mailing</a>
                     </div>

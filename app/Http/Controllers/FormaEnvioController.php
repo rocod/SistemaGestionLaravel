@@ -21,7 +21,9 @@ class FormaEnvioController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['forma_envio' => 'required']);
+        $request->validate([
+            'forma_envio' => 'required',
+        ]);
 
         FormaEnvio::create(['estado' => 1] + $request->all());
 

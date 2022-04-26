@@ -21,7 +21,14 @@ class FormaPagoController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['forma_pago' => 'required']);
+        $request->validate([
+            'forma_pago' => 'required|max:40',
+            'provincia'  => 'max:30',
+            'localidad'  => 'max:40',
+            'cp'         => 'numeric',
+            'direccion'  => 'max:100',
+            'telefono'   => 'numeric'
+        ]);
 
         FormaPago::create(['estado' => 1] + $request->all());
 
@@ -37,7 +44,14 @@ class FormaPagoController extends Controller
 
     public function update(Request $request, FormaPago $forma_de_pago)
     {
-        $request->validate(['forma_pago' => 'required']);
+        $request->validate([
+            'forma_pago' => 'required|max:30',
+            'provincia'  => 'max:30',
+            'localidad'  => 'max:40',
+            'cp'         => 'max:10',
+            'direccion'  => 'max:100',
+            'telefono'   => 'max:15'
+        ]);
 
         $forma_de_pago->update($request->all());
 

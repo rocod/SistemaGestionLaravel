@@ -26,9 +26,14 @@ class PreguntaFrecuenteController extends Controller
     public function agregarForm(){
     	return view("seccionesWeb.preguntasFrecuentes.agregarForm");
     }
-    public function grabar(){
+    public function grabar(Request $request){
+        $request->validate([
+            'pregunta' => 'required|max:300',
+            'respuesta' => 'required|max:300',
+            'posicion' => 'numeric'
+        ]);
 
-    	$pregunta=PreguntaFrecuente::create(request()->all());
+    	PreguntaFrecuente::create(request()->all());
     	session()->flash('success', 'La pregunta se creó con éxito');
     	return redirect("preguntas_frecuentes");
     }
@@ -43,7 +48,12 @@ class PreguntaFrecuenteController extends Controller
         ]);
     }
 
-    public function editar($id){
+    public function editar($id, Request $request){
+        $request->validate([
+            'pregunta' => 'required|max:300',
+            'respuesta' => 'required|max:300',
+            'posicion' => 'numeric'
+        ]);
 
     	$pregunta=PreguntaFrecuente::findOrFail($id);
     	$pregunta->update(request()->all());

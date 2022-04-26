@@ -21,7 +21,7 @@ class FormaRmaController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['forma_rma' => 'required']);
+        $request->validate(['forma_rma' => 'required|max:30']);
 
         FormaRma::create(['estado' => 1] + $request->all());
 
@@ -37,7 +37,7 @@ class FormaRmaController extends Controller
 
     public function update(Request $request, FormaRma $forma_rma)
     {
-        $request->validate(['forma_rma' => 'required']);
+        $request->validate(['forma_rma' => 'required|max:30']);
         
         $forma_rma->update($request->all());
 

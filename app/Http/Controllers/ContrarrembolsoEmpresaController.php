@@ -22,7 +22,10 @@ class ContrarrembolsoEmpresaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required'
+            'nombre'    => 'required|max:30',
+            'telefono'  => 'max:15',
+            'email'     => 'email|nullable',
+            'direccion' => 'max:100',
         ]);
 
         contrarrembolso_empresa::create($request->all());
@@ -40,7 +43,10 @@ class ContrarrembolsoEmpresaController extends Controller
     public function update(Request $request, contrarrembolso_empresa $contrarrembolso_empresa)
     {
         $request->validate([
-            'nombre' => 'required'
+            'nombre'    => 'required|max:30',
+            'telefono'  => 'max:15',
+            'email'     => 'email|nullable',
+            'direccion' => 'max:100',
         ]);
 
         $contrarrembolso_empresa->update($request->all());

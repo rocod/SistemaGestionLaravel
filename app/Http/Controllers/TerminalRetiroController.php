@@ -21,7 +21,12 @@ class TerminalRetiroController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['nombre' => 'required']);
+        $request->validate([
+            'nombre'    => 'required|max:30',
+            'telefono'  => 'max:15',
+            'direccion' => 'max:100',
+            'email'     => 'email|nullable',
+        ]);
 
         TerminalRetiro::create(['estado' => 1] + $request->all());
 
@@ -37,7 +42,12 @@ class TerminalRetiroController extends Controller
 
     public function update(Request $request, TerminalRetiro $terminal_retiro)
     {
-        $request->validate(['nombre' => 'required']);
+        $request->validate([
+            'nombre'    => 'required|max:30',
+            'telefono'  => 'max:15',
+            'direccion' => 'max:100',
+            'email'     => 'email|nullable',
+        ]);
         
         $terminal_retiro->update($request->all());
 

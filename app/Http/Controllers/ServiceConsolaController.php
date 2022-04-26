@@ -21,7 +21,7 @@ class ServiceConsolaController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['consola' => 'required']);
+        $request->validate(['consola' => 'required|max:30']);
 
         ServiceConsola::create($request->all());
 
@@ -37,7 +37,7 @@ class ServiceConsolaController extends Controller
 
     public function update(Request $request, ServiceConsola $consola)
     {
-        $request->validate(['consola' => 'required']);
+        $request->validate(['consola' => 'required|max:30']);
         
         $consola->update($request->all());
 

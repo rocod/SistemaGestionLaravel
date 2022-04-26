@@ -35,8 +35,8 @@ class GastoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'fecha' => 'required',
-            'monto' => 'required',
+            'fecha' => 'required|date',
+            'monto' => 'required|numeric',
             'id_concepto' => 'required',
         ]);
 
@@ -57,8 +57,8 @@ class GastoController extends Controller
     public function update(Request $request, Gasto $gasto)
     {
         $request->validate([
-            'fecha' => 'required',
-            'monto' => 'required',
+            'fecha' => 'required|date',
+            'monto' => 'required|numeric',
             'id_concepto' => 'required',
         ]);
         

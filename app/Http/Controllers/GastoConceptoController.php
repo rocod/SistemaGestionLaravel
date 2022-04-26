@@ -21,7 +21,7 @@ class GastoConceptoController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['concepto' => 'required']);
+        $request->validate(['concepto' => 'required|max:30']);
 
         GastoConcepto::create(['estado' => 1] + $request->all());
 
@@ -37,7 +37,7 @@ class GastoConceptoController extends Controller
 
     public function update(Request $request, GastoConcepto $concepto)
     {
-        $request->validate(['concepto' => 'required']);
+        $request->validate(['concepto' => 'required|max:30']);
         
         $concepto->update($request->all());
 
