@@ -11,18 +11,35 @@ class GastoController extends Controller
 {
     public function index(Request $request)
     {
-        $query_one = $request->get('search_one');
-        $query_two = $request->get('search_two');
-        $query = $request->get('search');
-
-        $gastos = Gasto::where('id_concepto', 'LIKE', '%' . $query . '%')
-            ->orWhereBetween('fecha', [$query_one, $query_two])
-            ->orderBy('fecha', 'desc')
-            ->get();
-
         $conceptos = GastoConcepto::all();
+        
+        $fecha_desde = request()->input('search_one');      
+        $fecha_hasta = request()->input('search_two');
+        $busqueda = request()->input('search');
 
-        return view('usoExterno.gastos.index', compact('gastos', 'query_one', 'query_two', 'query', 'conceptos'));
+        if ($fecha_desde > $fecha_hasta) {
+            session()->flash('success', 'La fecha "desde" debe ser menor a la fecha "hasta"');
+
+            $gastos = Gasto::orderBy('fecha', 'desc')->get();
+        
+        } else {
+        
+            $gastos = Gasto::orderBy('fecha', 'desc')
+                ->when($fecha_desde, function($query, $fecha_desde){
+                    return $query->whereDate('fecha', '>=', $fecha_desde);
+                })
+                ->when($fecha_hasta, function($query, $fecha_hasta){
+                    return $query->whereDate('fecha', '<=', $fecha_hasta);
+                })
+                ->when($busqueda, function($query, $busqueda){
+                    return $query->where('id_concepto', $busqueda);
+                })
+                ->get();
+
+
+        }//fin del else
+
+        return view('usoExterno.gastos.index', compact('gastos', 'fecha_desde', 'fecha_hasta', 'busqueda', 'conceptos'));
     }
 
     public function create()
