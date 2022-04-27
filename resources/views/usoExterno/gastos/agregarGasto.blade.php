@@ -37,6 +37,10 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="observacion" class="form-label">Observaciones</label>
+                                    <textarea name="observacion" class="form-control" id="observacion" aria-describedby="observacion" cols="30" rows="6"></textarea>
+                                </div>
                                 <button type="submit" class="btn btn-primary" title="grabar">Grabar</button>
                                 @csrf
                             </form>

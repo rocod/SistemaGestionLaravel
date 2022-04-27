@@ -13,6 +13,7 @@ class Gasto extends Model
     protected $fillable = [
         'fecha',
         'monto',
+        'observacion',
         'id_concepto'
     ];
 
