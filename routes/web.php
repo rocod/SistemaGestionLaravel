@@ -14,6 +14,7 @@ use App\Http\Controllers\ServiceConsolaController;
 use App\Http\Controllers\ServiceEstadoController;
 use App\Http\Controllers\GastoConceptoController;
 use App\Http\Controllers\GastoController;
+use App\Http\Controllers\MailingController;
 
 
 /*
@@ -169,6 +170,15 @@ Route::get('/editarGasto/{gasto}', [GastoController::class, 'edit'])->name('edit
 Route::put('/editarGasto/{gasto}', [GastoController::class, 'update'])->name('editarGasto')->middleware('auth');
 Route::get('eliminarGasto/{gasto}', [GastoController::class, 'eliminarForm'])->name('eliminarGastoForm')->middleware('auth');
 Route::delete('eliminarGasto/{gasto}', [GastoController::class, 'destroy'])->name('eliminarGasto')->middleware('auth');
+
+/*Mailing*/
+Route::get('/mailing', [MailingController::class, 'index'])->middleware('auth');
+Route::get('/agregarMailing', [MailingController::class, 'create'])->name('agregarMailing')->middleware('auth');
+Route::post('grabarMailing', [MailingController::class, 'store'])->name('grabarMailing')->middleware('auth');
+Route::get('/editarMailing/{mailing}', [MailingController::class, 'edit'])->name('editarMailingForm')->middleware('auth');
+Route::put('/editarMailing/{mailing}', [MailingController::class, 'update'])->name('editarMailing')->middleware('auth');
+Route::get('eliminarMailing/{mailing}', [MailingController::class, 'eliminarForm'])->name('eliminarMailingForm')->middleware('auth');
+Route::delete('eliminarMailing/{mailing}', [MailingController::class, 'destroy'])->name('eliminarMailing')->middleware('auth');
 /*FIN USO EXTERNO*/
 
 

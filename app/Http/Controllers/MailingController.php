@@ -5,81 +5,84 @@ namespace App\Http\Controllers;
 use App\Models\Mailing;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
+
 class MailingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $mailings = Mailing::orderBy('posicion', 'asc')->get();
+
+        return view('usoExterno.mailing.index', ['mailings' => $mailings]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('usoExterno.mailing.agregarMailing');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'asunto'          => 'required|max:150',
+            'cuerpo'          => 'required|max:600',
+            'archivo_adjunto' => 'required',
+            'posicion'        => 'numeric|required',
+        ]);
+
+        $imagen = $request->file('archivo_adjunto')->store('public/images');
+        $url = Storage::url($imagen);
+
+        Mailing::create(['archivo_adjunto' => $url] + $request->all());
+
+        session()->flash('success', 'El mailing se creó con éxito');
+
+        return redirect('mailing');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Mailing  $mailing
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Mailing $mailing)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Mailing  $mailing
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Mailing $mailing)
     {
-        //
+        return view('usoExterno.mailing.editarMailingForm', ['mailing' => $mailing]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Mailing  $mailing
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Mailing $mailing)
     {
-        //
+        $request->validate([
+            'asunto'          => 'required|max:150',
+            'cuerpo'          => 'required|max:600',
+            'archivo_adjunto' => 'required',
+            'posicion'        => 'numeric|required',
+        ]);
+        
+        /*Eliminar imagen anterior*/ 
+        $url = str_replace('storage', 'public', $mailing->archivo_adjunto);
+        Storage::delete($url);
+        /*Agregar imagen nueva*/
+        $imagen = $request->file('archivo_adjunto')->store('public/images');
+        $url = Storage::url($imagen);
+
+        $mailing->update(['archivo_adjunto' => $url] + $request->all());
+
+        session()->flash('success', 'El mailing se editó con éxito');
+
+        return redirect('mailing');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Mailing  $mailing
-     * @return \Illuminate\Http\Response
-     */
+    public function eliminarForm(Mailing $mailing)
+    {
+        return view('usoExterno.mailing.eliminarMailingForm', compact('mailing'));
+    }
+
     public function destroy(Mailing $mailing)
     {
-        //
+        /*borrar imagen de la carpeta storage*/ 
+        $url = str_replace('storage', 'public', $mailing->archivo_adjunto);
+        Storage::delete($url);
+
+        $mailing->delete();
+
+        session()->flash('success', 'El mailing se eliminó con éxito');
+
+        return redirect('mailing');
     }
 }

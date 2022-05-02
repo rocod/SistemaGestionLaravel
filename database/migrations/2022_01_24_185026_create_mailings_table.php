@@ -17,7 +17,7 @@ class CreateMailingsTable extends Migration
             $table->id();
             $table->string('asunto');
             $table->string('cuerpo');
-            $table->string('archivo_adjunto'); //nullable
+            $table->string('archivo_adjunto');
             $table->integer('posicion')->nullable();
             $table->timestamps();
         });
