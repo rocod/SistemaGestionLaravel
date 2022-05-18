@@ -31,8 +31,8 @@
                                     <input name="monto" type="text" class="form-control" id="monto" aria-describedby="monto" value="{{ old('monto', $gasto->monto) }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="concepto" class="form-label">Concepto</label>
-                                    {{-- <input name="id_concepto" type="text" class="form-control" id="concepto" aria-describedby="concepto" required> --}}
+                                    <p>Concepto de este gasto: {{ $gasto->concepto->concepto }}</p>
+                                    <p>Volver a selecionar concepto:</p>
                                     <select name="id_concepto">
                                         @foreach ($conceptos as $concepto)
                                             <option class="form-control" value="{{ $concepto->id }}">{{ $concepto->concepto }}</option>
@@ -43,7 +43,8 @@
                                     <label for="observacion" class="form-label">Observaciones</label>
                                     <textarea name="observacion" class="form-control" id="observacion" aria-describedby="observacion" cols="30" rows="6">{{ old('observacion', $gasto->observacion) }}</textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary" title="grabar">Modificar</button>
+                                <p class="text-danger">Antes de modificar vuelva a seleccionar el concepto que corresponda a este gasto</p>
+                                <button type="submit" class="btn btn-primary mb-4" title="grabar" onclick="confirm('¿Esta seguro que selecciono el concepto correspondiente a este gasto?')">Modificar</button>
                             </form>
                         </div>
                     </div>
