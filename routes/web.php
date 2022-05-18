@@ -70,8 +70,11 @@ Route::get('eliminarPregunta/{id}', [CategoriaController::class, 'eliminarForm']
 Route::delete('eliminarPregunta/{id}', [CategoriaController::class, 'eliminar'])->name('eliminarPregunta');*/
 
 /*opiniones*/
-Route::get('/opiniones', [OpinioneController::class, 'index'])->name('opiniones');
-Route::match(['put', 'patch'],'editarOpinion/{id}', [OpinioneController::class, 'editar'])->name('editarOpinion');
+Route::get('/opiniones', [OpinioneController::class, 'index'])->middleware('auth');
+Route::get('/agregarOpinion', [OpinioneController::class, 'create'])->name('agregarOpinion')->middleware('auth');
+Route::post('grabarOpinion', [OpinioneController::class, 'store'])->name('grabarOpinion')->middleware('auth');
+Route::put('aceptarOpinion/{opinion}', [OpinioneController::class, 'aceptar'])->name('aceptarOpinion')->middleware('auth');
+Route::put('rechazarOpinion/{opinion}', [OpinioneController::class, 'rechazar'])->name('rechazarOpinion')->middleware('auth');
 
 /*redes sociales*/
 Route::get('/redes_sociales', [RedesSocialesController::class, 'index'])->middleware('auth');
