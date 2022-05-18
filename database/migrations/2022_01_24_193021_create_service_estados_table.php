@@ -17,6 +17,7 @@ class CreateServiceEstadosTable extends Migration
             $table->id();
             $table->string('estado');
             $table->string('mensaje', 500)->nullable();
+            $table->integer('state')->default(1);
             $table->timestamps();
         });
     }
