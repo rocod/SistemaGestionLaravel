@@ -15,6 +15,7 @@ use App\Http\Controllers\ServiceEstadoController;
 use App\Http\Controllers\GastoConceptoController;
 use App\Http\Controllers\GastoController;
 use App\Http\Controllers\MailingController;
+use App\Http\Controllers\SliderController;
 
 
 /*
@@ -83,6 +84,13 @@ Route::get('/redes_sociales', [RedesSocialesController::class, 'index'])->middle
 Route::get('/editarRedSocial/{red_social}', [RedesSocialesController::class, 'edit'])->name('editarRedSocialForm')->middleware('auth');
 Route::put('/editarRedSocial/{red_social}', [RedesSocialesController::class, 'update'])->name('editarRedSocial')->middleware('auth');
 // Route::delete('eliminarRedSocial/{red_social}', [RedesSocialesController::class, 'destroy'])->name('eliminarRedSocial')->middleware('auth');
+
+/*Slider home*/
+Route::get('/slider', [SliderController::class, 'index'])->middleware('auth');
+Route::get('/agregarSlider', [SliderController::class, 'create'])->name('agregarSlider')->middleware('auth');
+Route::post('grabarSlider', [SliderController::class, 'store'])->name('grabarSlider')->middleware('auth');
+Route::get('eliminarSlider/{slider}', [SliderController::class, 'eliminarForm'])->name('eliminarSliderForm')->middleware('auth');
+Route::delete('eliminarSlider/{slider}', [SliderController::class, 'destroy'])->name('eliminarSlider')->middleware('auth');
 
 /*FIN SECCIONES WEB*/
 

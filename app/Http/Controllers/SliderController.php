@@ -4,82 +4,53 @@ namespace App\Http\Controllers;
 
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SliderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $sliders = Slider::latest()->get();
+
+        return view('seccionesWeb.slider.index', compact('sliders'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('seccionesWeb.slider.agregarSlider');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'imagen' => 'required|image'
+        ]);
+
+        $imagen = $request->file('imagen')->store('public/images/sliders');
+        $url = Storage::url($imagen);
+
+        Slider::create(['imagen' => $url] + $request->all());
+
+        session()->flash('success', 'El Slider se creó con éxito');
+
+        return redirect('slider');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Slider  $slider
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Slider $slider)
+    public function eliminarForm(Slider $slider)
     {
-        //
+        return view('seccionesWeb.slider.eliminarSliderForm', compact('slider'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Slider  $slider
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Slider $slider)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Slider  $slider
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Slider $slider)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Slider  $slider
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Slider $slider)
     {
-        //
+        /*borrar imagen de la carpeta storage*/ 
+        $url = str_replace('storage', 'public', $slider->imagen);
+        Storage::delete($url);
+
+        $slider->delete();
+
+        session()->flash('success', 'El Slider se eliminó con éxito');
+
+        return redirect('slider');
     }
 }
