@@ -7,79 +7,70 @@ use Illuminate\Http\Request;
 
 class ProveedorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $proveedores = Proveedor::latest()->get();
+
+        return view('usuarios.proveedores.index', compact('proveedores'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('usuarios.proveedores.agregarProveedor');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre'   => 'required|max:100',
+            'cuit'        => 'max:100',
+            'email'       => 'email|max:150',
+            'telefono'    => 'max:150',
+            'direccion'   => 'max:200',
+            'informacion' => 'max:250',
+        ]);
+
+        Proveedor::create($request->all());
+
+        session()->flash('success', 'El proveedor se creó con éxito');
+
+        return redirect('proveedores');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Proveedor  $proveedor
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Proveedor $proveedor)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Proveedor  $proveedor
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Proveedor $proveedor)
     {
-        //
+        return view('usuarios.proveedores.editarProveedorForm', compact('proveedor'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Proveedor  $proveedor
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Proveedor $proveedor)
     {
-        //
+        $request->validate([
+            'nombre'   => 'required|max:100',
+            'cuit'        => 'max:100',
+            'email'       => 'email|max:150',
+            'telefono'    => 'max:150',
+            'direccion'   => 'max:200',
+            'informacion' => 'max:250',
+        ]);
+        
+        $proveedor->update($request->all());
+
+        session()->flash('success', 'El proveedor se editó con éxito');
+
+        return redirect('proveedores');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Proveedor  $proveedor
-     * @return \Illuminate\Http\Response
-     */
+    public function eliminarForm(Proveedor $proveedor)
+    {
+        return view('usuarios.proveedores.eliminarProveedorForm', compact('proveedor'));
+    }
+
     public function destroy(Proveedor $proveedor)
     {
-        //
+        $proveedor->delete();
+
+        session()->flash('success', 'El proveedor se eliminó con éxito');
+
+        return redirect('proveedores');
     }
 }

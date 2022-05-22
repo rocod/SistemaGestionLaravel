@@ -17,6 +17,7 @@ use App\Http\Controllers\GastoController;
 use App\Http\Controllers\MailingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\CuentaController;
+use App\Http\Controllers\ProveedorController;
 
 
 /*
@@ -152,6 +153,18 @@ Route::get('eliminarDeposito/{deposito}', [CuentaController::class, 'eliminarFor
 Route::delete('eliminarDeposito/{deposito}', [CuentaController::class, 'destroy'])->name('eliminarDeposito')->middleware('auth');
 
 /*FIN VENTAS*/ 
+
+/*USUARIOS*/
+/*Proveedores*/
+Route::get('/proveedores', [ProveedorController::class, 'index'])->middleware('auth');
+Route::get('/agregarProveedor', [ProveedorController::class, 'create'])->name('agregarProveedor')->middleware('auth');
+Route::post('grabarProveedor', [ProveedorController::class, 'store'])->name('grabarProveedor')->middleware('auth');
+Route::get('/editarProveedor/{proveedor}', [ProveedorController::class, 'edit'])->name('editarProveedorForm')->middleware('auth');
+Route::put('/editarProveedor/{proveedor}', [ProveedorController::class, 'update'])->name('editarProveedor')->middleware('auth');
+Route::get('eliminarProveedor/{proveedor}', [ProveedorController::class, 'eliminarForm'])->name('eliminarProveedorForm')->middleware('auth');
+Route::delete('eliminarProveedor/{proveedor}', [ProveedorController::class, 'destroy'])->name('eliminarProveedor')->middleware('auth');
+
+/*FIN USUARIOS*/
 
 /*SERVICE*/
 /*Modelos de consola*/
