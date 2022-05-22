@@ -16,6 +16,7 @@ use App\Http\Controllers\GastoConceptoController;
 use App\Http\Controllers\GastoController;
 use App\Http\Controllers\MailingController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\CuentaController;
 
 
 /*
@@ -140,6 +141,15 @@ Route::get('/editarFormaRMA/{forma_rma}', [FormaRmaController::class, 'edit'])->
 Route::put('/editarFormaRMA/{forma_rma}', [FormaRmaController::class, 'update'])->name('editarFormaRMA')->middleware('auth');
 Route::get('eliminarFormaRMA/{forma_rma}', [FormaRmaController::class, 'eliminarForm'])->name('eliminarFormaRMAForm')->middleware('auth');
 Route::delete('eliminarFormaRMA/{forma_rma}', [FormaRmaController::class, 'destroy'])->name('eliminarFormaRMA')->middleware('auth');
+
+/*Depositos*/
+Route::get('/depositos', [CuentaController::class, 'index'])->middleware('auth');
+Route::get('/agregarDeposito', [CuentaController::class, 'create'])->name('agregarDeposito')->middleware('auth');
+Route::post('grabarDeposito', [CuentaController::class, 'store'])->name('grabarDeposito')->middleware('auth');
+Route::get('/editarDeposito/{deposito}', [CuentaController::class, 'edit'])->name('editarDepositoForm')->middleware('auth');
+Route::put('/editarDeposito/{deposito}', [CuentaController::class, 'update'])->name('editarDeposito')->middleware('auth');
+Route::get('eliminarDeposito/{deposito}', [CuentaController::class, 'eliminarForm'])->name('eliminarDepositoForm')->middleware('auth');
+Route::delete('eliminarDeposito/{deposito}', [CuentaController::class, 'destroy'])->name('eliminarDeposito')->middleware('auth');
 
 /*FIN VENTAS*/ 
 

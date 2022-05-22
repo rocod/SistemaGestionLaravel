@@ -7,79 +7,68 @@ use Illuminate\Http\Request;
 
 class CuentaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $depositos = Cuenta::where('estado', 1)->get();
+
+        return view('ventas.depositos.index', compact('depositos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('ventas.depositos.agregarDeposito');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre'      => 'required|max:40',
+            'nro_cuenta'  => 'required|numeric',
+            'cbu'         => 'required|numeric',
+            'banco'       => 'required|max:100',
+            'titular'     => 'required|max:150'
+        ]);
+
+        Cuenta::create(['estado' => 1] + $request->all());
+
+        session()->flash('success', 'El depósito se creó con éxito');
+
+        return redirect('depositos');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Cuenta  $cuenta
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Cuenta $cuenta)
+    public function edit(Cuenta $deposito)
     {
-        //
+        return view('ventas.depositos.editarDepositoForm', compact('deposito'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Cuenta  $cuenta
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cuenta $cuenta)
+    public function update(Request $request, Cuenta $deposito)
     {
-        //
+        $request->validate([
+            'nombre'      => 'required|max:40',
+            'nro_cuenta'  => 'required|numeric',
+            'cbu'         => 'required|numeric',
+            'banco'       => 'required|max:100',
+            'titular'     => 'required|max:150'
+        ]);
+
+        $deposito->update($request->all());
+
+        session()->flash('success', 'El depósito se editó con éxito');
+
+        return redirect('depositos');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cuenta  $cuenta
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Cuenta $cuenta)
+    public function eliminarForm(Cuenta $deposito)
     {
-        //
+        return view('ventas.depositos.eliminarDepositoForm', compact('deposito'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Cuenta  $cuenta
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Cuenta $cuenta)
+    public function destroy(Cuenta $deposito)
     {
-        //
+        $deposito->update(['estado' => 0]);
+
+        session()->flash('success', 'El depósito se eliminó con éxito');
+
+        return redirect('depositos');
     }
 }
