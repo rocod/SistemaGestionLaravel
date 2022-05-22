@@ -29,4 +29,9 @@ class Opinione extends Model
     {
         return $this->belongsTo(user::class, 'id_usuario');
     }
+
+    public function getGetResumenAttribute()
+    {
+        return substr($this->opinion, 0, 50);
+    }
 }

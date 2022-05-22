@@ -34,7 +34,7 @@
                                     <td>{{ $opinion->producto }}</td>
                                     <td>{{ $opinion->puntaje }}</td>
                                     <td>{{ $opinion->user->email }}</td>
-                                    <td>{{ $opinion->opinion }}</td>
+                                    <td>{{ $opinion->get_resumen }}</td>
                                     <td>{{ $opinion->estado }}</td>
                                     <td>
                                         <form method="POST" action="{{ route('aceptarOpinion', $opinion) }}" enctype="multipart/form-data">
