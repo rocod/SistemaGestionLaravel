@@ -11,6 +11,7 @@ class ServiceEstado extends Model
 
     protected $fillable = [
         'estado',
-        'mensaje'
+        'mensaje',
+        'state'
     ];
 }

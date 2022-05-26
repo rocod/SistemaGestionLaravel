@@ -16,14 +16,15 @@ class CreateOpinionesTable extends Migration
         Schema::create('opiniones', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_usuario')->unsigned();
-            $table->bigInteger('id_producto')->unsigned();
+            // $table->bigInteger('id_producto')->unsigned();
+            $table->string('producto'); //Borrar este campo y descomentar los otros, esto es temporal. Para Romina
             $table->string('puntaje');
             $table->string('opinion');
-            $table->string('estado');
+            $table->string('estado')->default('Pendiente');
             $table->timestamps();
 
             $table->foreign('id_usuario')->references('id')->on('users');
-            $table->foreign('id_producto')->references('id')->on('productos');
+            // $table->foreign('id_producto')->references('id')->on('productos');
 
         });
     }

@@ -15,6 +15,9 @@ use App\Http\Controllers\ServiceEstadoController;
 use App\Http\Controllers\GastoConceptoController;
 use App\Http\Controllers\GastoController;
 use App\Http\Controllers\MailingController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\CuentaController;
+use App\Http\Controllers\ProveedorController;
 
 
 /*
@@ -70,8 +73,11 @@ Route::get('eliminarPregunta/{id}', [CategoriaController::class, 'eliminarForm']
 Route::delete('eliminarPregunta/{id}', [CategoriaController::class, 'eliminar'])->name('eliminarPregunta');*/
 
 /*opiniones*/
-Route::get('/opiniones', [OpinioneController::class, 'index'])->name('opiniones');
-Route::match(['put', 'patch'],'editarOpinion/{id}', [OpinioneController::class, 'editar'])->name('editarOpinion');
+Route::get('/opiniones', [OpinioneController::class, 'index'])->middleware('auth');
+Route::get('/agregarOpinion', [OpinioneController::class, 'create'])->name('agregarOpinion')->middleware('auth');
+Route::post('grabarOpinion', [OpinioneController::class, 'store'])->name('grabarOpinion')->middleware('auth');
+Route::put('aceptarOpinion/{opinion}', [OpinioneController::class, 'aceptar'])->name('aceptarOpinion')->middleware('auth');
+Route::put('rechazarOpinion/{opinion}', [OpinioneController::class, 'rechazar'])->name('rechazarOpinion')->middleware('auth');
 
 /*redes sociales*/
 Route::get('/redes_sociales', [RedesSocialesController::class, 'index'])->middleware('auth');
@@ -80,6 +86,13 @@ Route::get('/redes_sociales', [RedesSocialesController::class, 'index'])->middle
 Route::get('/editarRedSocial/{red_social}', [RedesSocialesController::class, 'edit'])->name('editarRedSocialForm')->middleware('auth');
 Route::put('/editarRedSocial/{red_social}', [RedesSocialesController::class, 'update'])->name('editarRedSocial')->middleware('auth');
 // Route::delete('eliminarRedSocial/{red_social}', [RedesSocialesController::class, 'destroy'])->name('eliminarRedSocial')->middleware('auth');
+
+/*Slider home*/
+Route::get('/slider', [SliderController::class, 'index'])->middleware('auth');
+Route::get('/agregarSlider', [SliderController::class, 'create'])->name('agregarSlider')->middleware('auth');
+Route::post('grabarSlider', [SliderController::class, 'store'])->name('grabarSlider')->middleware('auth');
+Route::get('eliminarSlider/{slider}', [SliderController::class, 'eliminarForm'])->name('eliminarSliderForm')->middleware('auth');
+Route::delete('eliminarSlider/{slider}', [SliderController::class, 'destroy'])->name('eliminarSlider')->middleware('auth');
 
 /*FIN SECCIONES WEB*/
 
@@ -130,7 +143,28 @@ Route::put('/editarFormaRMA/{forma_rma}', [FormaRmaController::class, 'update'])
 Route::get('eliminarFormaRMA/{forma_rma}', [FormaRmaController::class, 'eliminarForm'])->name('eliminarFormaRMAForm')->middleware('auth');
 Route::delete('eliminarFormaRMA/{forma_rma}', [FormaRmaController::class, 'destroy'])->name('eliminarFormaRMA')->middleware('auth');
 
+/*Depositos*/
+Route::get('/depositos', [CuentaController::class, 'index'])->middleware('auth');
+Route::get('/agregarDeposito', [CuentaController::class, 'create'])->name('agregarDeposito')->middleware('auth');
+Route::post('grabarDeposito', [CuentaController::class, 'store'])->name('grabarDeposito')->middleware('auth');
+Route::get('/editarDeposito/{deposito}', [CuentaController::class, 'edit'])->name('editarDepositoForm')->middleware('auth');
+Route::put('/editarDeposito/{deposito}', [CuentaController::class, 'update'])->name('editarDeposito')->middleware('auth');
+Route::get('eliminarDeposito/{deposito}', [CuentaController::class, 'eliminarForm'])->name('eliminarDepositoForm')->middleware('auth');
+Route::delete('eliminarDeposito/{deposito}', [CuentaController::class, 'destroy'])->name('eliminarDeposito')->middleware('auth');
+
 /*FIN VENTAS*/ 
+
+/*USUARIOS*/
+/*Proveedores*/
+Route::get('/proveedores', [ProveedorController::class, 'index'])->middleware('auth');
+Route::get('/agregarProveedor', [ProveedorController::class, 'create'])->name('agregarProveedor')->middleware('auth');
+Route::post('grabarProveedor', [ProveedorController::class, 'store'])->name('grabarProveedor')->middleware('auth');
+Route::get('/editarProveedor/{proveedor}', [ProveedorController::class, 'edit'])->name('editarProveedorForm')->middleware('auth');
+Route::put('/editarProveedor/{proveedor}', [ProveedorController::class, 'update'])->name('editarProveedor')->middleware('auth');
+Route::get('eliminarProveedor/{proveedor}', [ProveedorController::class, 'eliminarForm'])->name('eliminarProveedorForm')->middleware('auth');
+Route::delete('eliminarProveedor/{proveedor}', [ProveedorController::class, 'destroy'])->name('eliminarProveedor')->middleware('auth');
+
+/*FIN USUARIOS*/
 
 /*SERVICE*/
 /*Modelos de consola*/

@@ -59,7 +59,7 @@
                                 <tr>
                                     <td>{{ $gasto->fecha }}</td>
                                     <td>${{ $gasto->monto }}</td>
-                                    <td>{{ $gasto->id_concepto }}</td>
+                                    <td>{{ $gasto->concepto->concepto }}</td>
                                     <td>
                                         <a title="Editar" class="text-info" href="{{ route('editarGastoForm', $gasto) }}">
                                             <i class="fas fa-pencil-alt fa-2x"></i>

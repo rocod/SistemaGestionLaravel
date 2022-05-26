@@ -9,7 +9,7 @@ class ServiceEstadoController extends Controller
 {
     public function index()
     {
-        $estados_reparacion = ServiceEstado::all();
+        $estados_reparacion = ServiceEstado::where('state', 1)->get();
 
         return view('servicee.estados.index', compact('estados_reparacion'));
     }
@@ -60,7 +60,9 @@ class ServiceEstadoController extends Controller
 
     public function destroy(ServiceEstado $estado_reparacion)
     {
-        $estado_reparacion->delete();
+        $estado_reparacion->update([
+            'state' => 0
+        ]);
         
         session()->flash('success', 'El estado de reparación se eliminó con éxito');
 
