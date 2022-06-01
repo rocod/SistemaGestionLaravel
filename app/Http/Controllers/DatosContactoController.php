@@ -7,79 +7,30 @@ use Illuminate\Http\Request;
 
 class DatosContactoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $dato1 = DatosContacto::where('id', 1)->get();
+        $dato2 = DatosContacto::where('id', 2)->get();
+        $dato3 = DatosContacto::where('id', 3)->get();
+
+        return view('seccionesWeb.datosDeContacto.index', compact('dato1', 'dato2', 'dato3'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function edit(DatosContacto $dato)
     {
-        //
+        return view('seccionesWeb.datosDeContacto.editarDatoDeContactoForm', compact('dato'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function update(Request $request, DatosContacto $dato)
     {
-        //
+        $request->validate([
+            'linea1' => 'required|max:200',
+            'linea2' => 'required|max:200',
+        ]);
+
+        $dato->update($request->all());
+
+        return redirect('datos_de_contacto');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\DatosContacto  $datosContacto
-     * @return \Illuminate\Http\Response
-     */
-    public function show(DatosContacto $datosContacto)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\DatosContacto  $datosContacto
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(DatosContacto $datosContacto)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\DatosContacto  $datosContacto
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, DatosContacto $datosContacto)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\DatosContacto  $datosContacto
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(DatosContacto $datosContacto)
-    {
-        //
-    }
 }

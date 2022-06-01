@@ -94,8 +94,8 @@
                         
                         <a class="collapse-item" href="/preguntas_frecuentes">Preg. Frecuentes</a>
                         <a class="collapse-item" href="/opiniones">Opiniones</a>
-                        <a class="collapse-item" href="utilities-animation.html">Home Slider</a>
-                        <a class="collapse-item" href="utilities-other.html">Datos de contacto</a>
+                        <a class="collapse-item" href="/slider">Home Slider</a>
+                        <a class="collapse-item" href="/datos_de_contacto">Datos de contacto</a>
                         <a class="collapse-item" href="redes_sociales">Redes Sociales</a>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                         
                         <a class="collapse-item" href="utilities-color.html">Clientes</a>
                         <a class="collapse-item" href="utilities-border.html">Operadores</a>
-                        <a class="collapse-item" href="utilities-animation.html">Proveedores</a>
+                        <a class="collapse-item" href="proveedores">Proveedores</a>
                         
                     </div>
                 </div>
@@ -210,7 +210,7 @@
                         <a class="collapse-item" href="utilities-animation.html">Newsletter</a>
                         <a class="collapse-item" href="gastos">Gastos</a>
                         <a class="collapse-item" href="utilities-animation.html">Exportar suscripciones</a>
-                        <a class="collapse-item" href="utilities-animation.html">Mailing</a>
+                        <a class="collapse-item" href="mailing">Mailing</a>
                     </div>
                 </div>
             </li>

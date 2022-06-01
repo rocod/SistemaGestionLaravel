@@ -18,6 +18,7 @@ use App\Http\Controllers\MailingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\DatosContactoController;
 
 
 /*
@@ -93,6 +94,11 @@ Route::get('/agregarSlider', [SliderController::class, 'create'])->name('agregar
 Route::post('grabarSlider', [SliderController::class, 'store'])->name('grabarSlider')->middleware('auth');
 Route::get('eliminarSlider/{slider}', [SliderController::class, 'eliminarForm'])->name('eliminarSliderForm')->middleware('auth');
 Route::delete('eliminarSlider/{slider}', [SliderController::class, 'destroy'])->name('eliminarSlider')->middleware('auth');
+
+/*Datos de contacto*/
+Route::get('/datos_de_contacto', [DatosContactoController::class, 'index'])->middleware('auth');
+Route::get('/editarDatoDeContacto/{dato}', [DatosContactoController::class, 'edit'])->name('editarDatoDeContactoForm')->middleware('auth');
+Route::put('/editarDatoDeContacto/{dato}', [DatosContactoController::class, 'update'])->name('editarDatoDeContacto')->middleware('auth');
 
 /*FIN SECCIONES WEB*/
 
