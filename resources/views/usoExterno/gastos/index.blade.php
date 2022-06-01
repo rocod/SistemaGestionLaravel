@@ -45,6 +45,7 @@
                                     <th scope="col">Fecha</th>
                                     <th scope="col">Monto</th>
                                     <th scope="col">Concepto</th>
+                                    <th scope="col">Observaciones</th>
                                     <th scope="col">Modif.</th>
                                     <th scope="col">Elim.</th>
                                     <th scope="col">
@@ -60,6 +61,7 @@
                                     <td>{{ $gasto->fecha }}</td>
                                     <td>${{ $gasto->monto }}</td>
                                     <td>{{ $gasto->concepto->concepto }}</td>
+                                    <td>{{ $gasto->observacion }}</td>
                                     <td>
                                         <a title="Editar" class="text-info" href="{{ route('editarGastoForm', $gasto) }}">
                                             <i class="fas fa-pencil-alt fa-2x"></i>
