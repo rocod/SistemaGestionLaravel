@@ -5,14 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Subseccione extends Model
+class Seccion extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'seccion',
-        'nombre',
-        'link',
-    ];
-
 }

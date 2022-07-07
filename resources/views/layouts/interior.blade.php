@@ -151,8 +151,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         
-                        <a class="collapse-item" href="utilities-color.html">Clientes</a>
-                        <a class="collapse-item" href="utilities-border.html">Operadores</a>
+                        <a class="collapse-item" href="/clientes">Clientes</a>
+                        <a class="collapse-item" href="/operadores">Operadores</a>
                         <a class="collapse-item" href="proveedores">Proveedores</a>
                         
                     </div>

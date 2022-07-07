@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Subseccione;
-
-class SubseccioneSeeder extends Seeder
+use App\Models\Role;
+class RoleTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +13,8 @@ class SubseccioneSeeder extends Seeder
      */
     public function run()
     {
-
-        $subsecciones=array(
+         $roles=array(
+            array(0, 'Publica', ''),
             array(1, 'Listado Productos', 'productos/panel_productos.php'),
             array(1, 'Carga múltiple productos', 'productos/carga_masiva_form.php'),
             array(1, 'Producto Destacado', 'producto_destacado/panel_productos.php'),
@@ -60,13 +59,13 @@ class SubseccioneSeeder extends Seeder
 
         );
 
-        foreach($subsecciones as $sub){
+        foreach($roles as $role){
 
-            $subseccione = new Subseccione();
-            $subseccione->seccion = $sub[0];
-            $subseccione->nombre = $sub[1];
-            $subseccione->link = $sub[2];
-            $subseccione->save();
+            $rol = new Role();
+            $rol->seccion = $role[0];
+            $rol->nombre = $role[1];
+            $rol->link = $role[2];
+            $rol->save();
 
             /*
             DB::table('categorias')->insert([
@@ -74,8 +73,7 @@ class SubseccioneSeeder extends Seeder
                 'categoria' => $cat,
             ]);*/
         }
-        
 
-       
+        
     }
 }

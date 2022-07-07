@@ -19,7 +19,7 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\DatosContactoController;
-
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -169,6 +169,17 @@ Route::get('/editarProveedor/{proveedor}', [ProveedorController::class, 'edit'])
 Route::put('/editarProveedor/{proveedor}', [ProveedorController::class, 'update'])->name('editarProveedor')->middleware('auth');
 Route::get('eliminarProveedor/{proveedor}', [ProveedorController::class, 'eliminarForm'])->name('eliminarProveedorForm')->middleware('auth');
 Route::delete('eliminarProveedor/{proveedor}', [ProveedorController::class, 'destroy'])->name('eliminarProveedor')->middleware('auth');
+
+/*Operadores*/
+Route::get('/operadores', [UserController::class, 'index'])->middleware('auth');
+Route::get('/agregar_operador', [UserController::class, 'agregarForm'])->name('agregarOperador');
+Route::post('grabarOperador', [UserController::class, 'grabar'])->name('grabarOperador');
+Route::get('editarOperador/{id}', [UserController::class, 'editarForm'])->name('editarOperadorForm');
+Route::match(['put', 'patch'],'editarOperador/{id}', [UserController::class, 'editarOperador'])->name('editarOperador');
+Route::get('eliminarOperador/{id}', [UserController::class, 'eliminarForm'])->name('eliminarOperadorForm');
+Route::delete('eliminarOperador/{id}', [UserController::class, 'eliminar'])->name('eliminarOperador');
+
+
 
 /*FIN USUARIOS*/
 
