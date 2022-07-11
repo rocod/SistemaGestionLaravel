@@ -47,6 +47,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
 
 /*PRODUCTOS*/
+Route::get('/productos', [PreguntaFrecuenteController::class, 'index'])->name('preguntasFrecuentes');
 /*categorias*/
 Route::get('/categorias/{categoria?}/{subcategoria?}', [CategoriaController::class, 'index'])->name('categorias');
 
