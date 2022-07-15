@@ -19,6 +19,8 @@ class CategoriaController extends Controller
     {
         $categorias=categoria::orderBy('orden')->get();
 
+
+
         if($categoria==0){
 
             return view("Productos.categorias.lista")->with([
@@ -27,18 +29,36 @@ class CategoriaController extends Controller
 
         }elseif($subcategoria==0){
 
+            
+
+
             $subcategorias=subcategoria::where('relacion', $categoria)->orderBy('orden')->get();
+            $categoria=categoria::findOrFail($categoria);
+
+           
+
            return view("Productos.categorias.lista")->with([
             'categorias'=>$categorias,
             'subcategorias'=>$subcategorias,
+            'cat'=>$categoria,
+            //'sub'=>$subcategoria,
             ]);
 
         }else{
-             $subsubcategorias=subsubcategoria::where('relacion', $subcategoria)->orderBy('orden')->get();
+            
+
+            $subcategorias=subcategoria::where('relacion', $categoria)->orderBy('orden')->get();
+            $subsubcategorias=subsubcategoria::where('relacion', $subcategoria)->orderBy('orden')->get();
+            
+            $categoria=categoria::findOrFail($categoria);
+            $subcategoria=subcategoria::findOrFail($subcategoria);
+
             return view("Productos.categorias.lista")->with([
             'categorias'=>$categorias,
             'subcategorias'=>$subcategorias,
             'subsubcategorias'=>$subsubcategorias,
+            'cat'=>$categoria,
+            'sub'=>$subcategoria,
             ]);
         }
     }
@@ -68,6 +88,40 @@ class CategoriaController extends Controller
 
         session()->flash('success', 'La categoria se editó con éxito');
         return redirect("categorias");
+    }
+
+
+    public function eliminarForm($id){
+
+        $categoria=categoria::findOrFail($id);        
+
+        return view("Productos.categorias.eliminarForm")->with([
+            'categoria'=>$categoria,            
+        ]);
+    }
+
+    public function eliminar($id){
+
+        $categoria=categoria::findOrFail($id);
+        $subcategorias=subcategoria::where('relacion', $id)->get();
+
+        if($subcategorias->count()==0){
+
+            $categoria->delete();
+            $mensaje="La categoría se eliminó con éxito";
+            $tipo="success";
+
+        }else{
+
+            $mensaje="No se eliminó la categoría, porque ya tiene subcategorías relacionadas";
+            $tipo="error";
+        }
+        
+
+        session()->flash($tipo, $mensaje);
+        return redirect("categorias")
+        ;
+
     }
 
     

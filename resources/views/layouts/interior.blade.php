@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -312,6 +311,12 @@
                     {{ session()->get('success')}}
                 </div> 
                 @endif
+                @if(session()->has('error'))
+                <div class="alert alert-danger">
+                    
+                    {{ session()->get('error')}}
+                </div> 
+                @endif
                 @if (isset($errors) && $errors->any())
                 <div class="alert alert-danger">
                     
@@ -383,6 +388,7 @@
     <script src="/js/demo/chart-area-demo.js"></script>
     <script src="/js/demo/chart-pie-demo.js"></script>
 
+    @yield('script')
 </body>
 
 </html>

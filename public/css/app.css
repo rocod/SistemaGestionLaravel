@@ -10004,3 +10004,7 @@ h3 {
     border-color: #dee2e6;
   }
 }
+
+.btn-primary:hover{color:#fff;background-color:#6e0f15;border-color:#6e0f15}
+.btn-primary.focus,.btn-primary:focus{color:#fff;background-color:#6e0f15;border-color:#6e0f15;}
+.btn-primary.disabled, .btn-primary:disabled{color:#fff;background-color: #6e0f15;border-color:#6e0f15}

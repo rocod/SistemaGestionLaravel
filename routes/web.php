@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PreguntaFrecuenteController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\SubcategoriaController;
+use App\Http\Controllers\SubsubcategoriaController;
 use App\Http\Controllers\OpinioneController;
 use App\Http\Controllers\RedesSocialesController;
 use App\Http\Controllers\FormaPagoController;
@@ -20,6 +22,7 @@ use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\DatosContactoController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +35,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('inicio');
 
 Auth::routes();
 
@@ -47,7 +50,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
 
 /*PRODUCTOS*/
-Route::get('/productos', [PreguntaFrecuenteController::class, 'index'])->name('preguntasFrecuentes');
+Route::get('/productos', [ProductoController::class, 'index'])->name('productos');
+Route::get('/agregar_producto', [ProductoController::class, 'agregarForm'])->name('agregarProducto');
+Route::post('grabarProducto', [ProductoController::class, 'grabar'])->name('grabarProducto');
+Route::get('editarProducto/{id}', [ProductoController::class, 'editarForm'])->name('editarProductoForm');
+Route::match(['put', 'patch'],'editarProducto/{id}', [ProductoController::class, 'editar'])->name('editarProducto');
+Route::get('eliminarProducto/{id}', [ProductoController::class, 'eliminarForm'])->name('eliminarProductoForm');
+Route::delete('eliminarProducto/{id}', [ProductoController::class, 'eliminar'])->name('eliminarProducto');
+
+
 /*categorias*/
 Route::get('/categorias/{categoria?}/{subcategoria?}', [CategoriaController::class, 'index'])->name('categorias');
 
@@ -56,6 +67,31 @@ Route::post('grabarCategoria', [CategoriaController::class, 'grabar'])->name('gr
 
 Route::get('editarCategoria/{id}', [CategoriaController::class, 'editarForm'])->name('editarCategoriaForm');
 Route::match(['put', 'patch'],'editarCategoria/{id}', [CategoriaController::class, 'editar'])->name('editarCategoria');
+
+Route::get('eliminarCategoria/{id}', [CategoriaController::class, 'eliminarForm'])->name('eliminarCategoriaForm');
+Route::delete('eliminarCategoria/{id}', [CategoriaController::class, 'eliminar'])->name('eliminarCategoria');
+
+/*Subcategoria */
+Route::get('/agregar_subcategoria/{id_categoria}', [SubcategoriaController::class, 'agregarSubForm'])->name('agregarSubcategoria');
+Route::post('grabarSubcategoria/{id_categoria}', [SubcategoriaController::class, 'grabar'])->name('grabarSubcategoria');
+Route::get('editarSubCategoria/{id}/{id_categoria}', [SubcategoriaController::class, 'editarForm'])->name('editarSubcategoriaForm');
+Route::match(['put', 'patch'],'editarSubcategoria/{id}/{id_categoria}', [SubcategoriaController::class, 'editar'])->name('editarSubcategoria');
+Route::get('eliminarSubcategoria/{id}/{id_categoria}', [SubcategoriaController::class, 'eliminarForm'])->name('eliminarSubcategoriaForm');
+Route::delete('eliminarSubcategoria/{id}/{id_categoria}', [SubcategoriaController::class, 'eliminar'])->name('eliminarSubcategoria');
+
+Route::get('subcategorias/listar/{categoria_id}', [SubcategoriaController::class, 'listar'])->name('subcategorias/listar');
+
+
+/*Subsubcategoria */
+Route::get('/agregar_subsubcategoria/{id_categoria}/{id_subcategoria}', [SubsubcategoriaController::class, 'agregarForm'])->name('agregarSubsubcategoria');
+Route::post('grabarSubsubcategoria/{id_categoria}/{id_subcategoria}', [SubsubcategoriaController::class, 'grabar'])->name('grabarSubsubcategoria');
+
+Route::get('editarSubsubcategoria/{id}/{id_categoria}/{id_subcategoria}', [SubsubcategoriaController::class, 'editarForm'])->name('editarSubsubcategoriaForm');
+Route::match(['put', 'patch'],'editarSubsubcategoria/{id}/{id_categoria}/{id_subcategoria}', [SubsubcategoriaController::class, 'editar'])->name('editarSubsubcategoria');
+Route::get('eliminarSubsubcategoria/{id}/{id_categoria}/{id_subcategoria}', [SubsubcategoriaController::class, 'eliminarForm'])->name('eliminarSubsubcategoriaForm');
+Route::delete('eliminarSubsubcategoria/{id}/{id_categoria}/{id_subcategoria}', [SubsubcategoriaController::class, 'eliminar'])->name('eliminarSubsubcategoria');
+
+Route::get('subsubcategorias/listar/{subcategoria_id}', [SubsubcategoriaController::class, 'listar'])->name('subsubcategorias/listar');
 
 /*FIN PRODUCTOS*/
 
@@ -70,9 +106,8 @@ Route::match(['put', 'patch'],'editarPregunta/{id}', [PreguntaFrecuenteControlle
 Route::get('eliminarPregunta/{id}', [PreguntaFrecuenteController::class, 'eliminarForm'])->name('eliminarPreguntaForm');
 Route::delete('eliminarPregunta/{id}', [PreguntaFrecuenteController::class, 'eliminar'])->name('eliminarPregunta');
 
-/*
-Route::get('eliminarPregunta/{id}', [CategoriaController::class, 'eliminarForm'])->name('eliminarPreguntaForm');
-Route::delete('eliminarPregunta/{id}', [CategoriaController::class, 'eliminar'])->name('eliminarPregunta');*/
+
+
 
 /*opiniones*/
 Route::get('/opiniones', [OpinioneController::class, 'index'])->middleware('auth');

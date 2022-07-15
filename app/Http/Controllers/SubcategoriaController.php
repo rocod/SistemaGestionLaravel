@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\subcategoria;
 use Illuminate\Http\Request;
+use App\Models\categoria;
+use App\Models\subsubcategoria;
+use Illuminate\Support\Facades\DB;
 
 class SubcategoriaController extends Controller
 {
@@ -17,69 +20,109 @@ class SubcategoriaController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function agregarSubForm($id_categoria){
+
+        $categoria=categoria::findOrFail($id_categoria);
+        return view("productos.categorias.agregarSubForm")->with([
+            'categoria'=>$categoria,
+            
+        ]);
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+     public function grabar($id_categoria){
+
+        $subcategoria= new subcategoria();
+        $subcategoria->opcion=request()->input('opcion');
+        $subcategoria->orden=request()->input('orden');
+        $subcategoria->relacion=$id_categoria;
+        $subcategoria->save();
+        session()->flash('success', 'La subcategoría se creó con éxito');
+        return redirect("categorias/".$id_categoria);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\subcategoria  $subcategoria
-     * @return \Illuminate\Http\Response
-     */
-    public function show(subcategoria $subcategoria)
-    {
-        //
+
+    public function editarForm($id, $id_categoria){
+
+        $subcategoria=subcategoria::findOrFail($id);
+        
+        return view("Productos.categorias.editarSubForm")->with([
+            'subcategoria'=>$subcategoria, 
+            'id_categoria'=>$id_categoria,           
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\subcategoria  $subcategoria
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(subcategoria $subcategoria)
-    {
-        //
+    public function editar($id, $id_categoria){
+
+        $subcategoria=subcategoria::findOrFail($id);
+        $subcategoria->update(request()->all());
+
+        session()->flash('success', 'La subcategoria se editó con éxito');
+        return redirect("categorias/".$id_categoria);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\subcategoria  $subcategoria
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, subcategoria $subcategoria)
-    {
-        //
+
+    public function eliminarForm($id, $id_categoria){
+
+        $subcategoria=subcategoria::findOrFail($id);        
+
+        return view("Productos.categorias.eliminarSubForm")->with([
+            'subcategoria'=>$subcategoria, 
+            'id_categoria'=>$id_categoria,            
+        ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\subcategoria  $subcategoria
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(subcategoria $subcategoria)
-    {
-        //
+    public function eliminar($id, $id_categoria){
+
+       
+        $subcategoria=subcategoria::findOrFail($id);
+        $subsubcategorias=subsubcategoria::where('relacion', $id)->get();        
+
+        if($subsubcategorias->count()==0){
+
+            $subcategoria->delete();
+            $mensaje="La subcategoría se eliminó con éxito";
+            $tipo="success";
+
+        }else{
+
+
+            $mensaje="No se eliminó la subcategoría, porque ya tiene subcategorías relacionadas";
+            $tipo="error";
+        }
+        
+
+        session()->flash($tipo, $mensaje);
+        return redirect("categorias/".$id_categoria);
+
     }
+
+   
+    public function listar(Request $request){
+
+        if($request->ajax())
+        {
+
+            
+        $output="";
+        $output.='<option value="">Seleccione</option>';
+        $subcategorias=DB::table('subcategorias')          
+            ->where('relacion',$request->categoria_id)->get();
+        if($subcategorias)
+        {
+        foreach ($subcategorias as $key => $subcategoria) {
+          
+         
+            $output.=
+                        '<option value="'.$subcategoria->id.'">'.$subcategoria->opcion.'</option>';
+            }
+            
+            }
+            return Response($output);
+        }
+
+    }
+
+
+ 
 }

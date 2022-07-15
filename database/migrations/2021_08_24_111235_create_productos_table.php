@@ -23,6 +23,7 @@ class CreateProductosTable extends Migration
             $table->string('precio')->nullable();
             $table->integer('costo')->nullable();
             $table->decimal('costo_dolar', $precision =10, $scale = 2)->nullable();
+            $table->bigInteger('proveedor_id')->unsigned()->nullable()->default(0);
             $table->integer('precio_may')->nullable();
             $table->string('descripcion', 1500)->nullable();
             $table->string('imagen1', 500)->nullable();
@@ -48,6 +49,7 @@ class CreateProductosTable extends Migration
             $table->foreign('subcategoria_id')->references('id')->on('subcategorias');
             $table->foreign('subsubcategoria_id')->references('id')->on('subsubcategorias');
             $table->foreign('producto_estado_id')->references('id')->on('productos_estados');
+             $table->foreign('proveedor_id')->references('id')->on('proveedors');
         });
     }
 

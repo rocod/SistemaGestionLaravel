@@ -24,11 +24,11 @@
                             @method('PUT')
                                 <div class="form-group">
                                     <label for="opcion" class="form-label">Categoría</label>
-                                    <input type="text" class="form-control" name="opcion" id="opcion" aria-describedby="Categoría" value="{{ $categoria->opcion }}">                                    
+                                    <input type="text" class="form-control" name="opcion" id="opcion" required aria-describedby="Categoría" value="{{ $categoria->opcion }}">                                    
                                 </div>
                                 <div class="form-group">
                                     <label for="orden" class="form-label">N° Orden</label>
-                                     <input type="text" class="form-control" name="orden" id="orden" aria-describedby="Nro de Orden" value="{{ $categoria->orden }}">  
+                                     <input type="text" required class="form-control" name="orden" id="orden" aria-describedby="Nro de Orden" value="{{ $categoria->orden }}">  
                                 </div>
                                 <div class="form-group">
                                     <label for="posicion" class="form-label">Oculta</label>                                    
