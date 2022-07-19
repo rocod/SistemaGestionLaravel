@@ -23,6 +23,7 @@ use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\DatosContactoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ProductosDestacadoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,20 @@ Route::match(['put', 'patch'],'editarProducto/{id}', [ProductoController::class,
 Route::get('eliminarProducto/{id}', [ProductoController::class, 'eliminarForm'])->name('eliminarProductoForm');
 Route::delete('eliminarProducto/{id}', [ProductoController::class, 'eliminar'])->name('eliminarProducto');
 
+/*imagen*/
+Route::get('/agregar_imagen', [ProductoController::class, 'agregarImgForm'])->name('agregarImgForm');
+Route::post('grabarImagen', [ProductoController::class, 'grabarImagen'])->name('grabarImagen');
+/////imag ///
+
+/*Producto destacado*/
+Route::get('producto_destacado', [ProductosDestacadoController::class, 'productoDestacado'])->name('productoDestacadoForm');
+Route::post('producto_destacado', [ProductosDestacadoController::class, 'grabarDestacado'])->name('productoDestacado');
+Route::get('destacado/buscar/', [ProductoController::class, 'Buscar'])->name('BuscarProductos');
+Route::get('agregarDestacado/{id}', [ProductosDestacadoController::class, 'agregarDestacado'])->name('agregarDestacado');
+
+
+
+
 
 /*categorias*/
 Route::get('/categorias/{categoria?}/{subcategoria?}', [CategoriaController::class, 'index'])->name('categorias');
@@ -79,7 +94,7 @@ Route::match(['put', 'patch'],'editarSubcategoria/{id}/{id_categoria}', [Subcate
 Route::get('eliminarSubcategoria/{id}/{id_categoria}', [SubcategoriaController::class, 'eliminarForm'])->name('eliminarSubcategoriaForm');
 Route::delete('eliminarSubcategoria/{id}/{id_categoria}', [SubcategoriaController::class, 'eliminar'])->name('eliminarSubcategoria');
 
-Route::get('subcategorias/listar/{categoria_id}', [SubcategoriaController::class, 'listar'])->name('subcategorias/listar');
+Route::get('subcategorias/listar/{producto_id?}/{categoria_id}/', [SubcategoriaController::class, 'listar'])->name('subcategorias/listar');
 
 
 /*Subsubcategoria */
@@ -91,7 +106,7 @@ Route::match(['put', 'patch'],'editarSubsubcategoria/{id}/{id_categoria}/{id_sub
 Route::get('eliminarSubsubcategoria/{id}/{id_categoria}/{id_subcategoria}', [SubsubcategoriaController::class, 'eliminarForm'])->name('eliminarSubsubcategoriaForm');
 Route::delete('eliminarSubsubcategoria/{id}/{id_categoria}/{id_subcategoria}', [SubsubcategoriaController::class, 'eliminar'])->name('eliminarSubsubcategoria');
 
-Route::get('subsubcategorias/listar/{subcategoria_id}', [SubsubcategoriaController::class, 'listar'])->name('subsubcategorias/listar');
+Route::get('subsubcategorias/listar/{producto_id?}/{subcategoria_id}', [SubsubcategoriaController::class, 'listar'])->name('subsubcategorias/listar');
 
 /*FIN PRODUCTOS*/
 

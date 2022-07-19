@@ -108,13 +108,23 @@ class SubcategoriaController extends Controller
         $output.='<option value="">Seleccione</option>';
         $subcategorias=DB::table('subcategorias')          
             ->where('relacion',$request->categoria_id)->get();
+
+
         if($subcategorias)
         {
-        foreach ($subcategorias as $key => $subcategoria) {
-          
-         
-            $output.=
-                        '<option value="'.$subcategoria->id.'">'.$subcategoria->opcion.'</option>';
+            foreach ($subcategorias as $key => $subcategoria) {
+              
+                if($request->producto_id){
+
+                $output.='<option value="'.$subcategoria->id.'">'.$subcategoria->opcion.'</option>';
+
+                }else{
+
+                    $output.='<option value="'.$subcategoria->id.'">'.$subcategoria->opcion.'</option>';
+
+
+                }
+            
             }
             
             }

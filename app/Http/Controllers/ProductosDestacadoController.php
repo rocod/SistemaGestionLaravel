@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductosDestacado;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class ProductosDestacadoController extends Controller
@@ -12,74 +13,34 @@ class ProductosDestacadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function productoDestacado(){
+
+        $producto=0;
+        $prodDest=ProductosDestacado::first();
+        if($prodDest){
+        
+            $producto=Producto::findOrFail($prodDest->id_producto);
+        }
+
+        return view("productos.productos.productoDestacado")->with([
+            'producto'=>$producto,           
+            
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function agregarDestacado($id){
+
+        $prodDest=ProductosDestacado::first();
+        if($prodDest)
+        $prodDest->delete();
+
+        $prod=new ProductosDestacado();
+        $prod->id_producto=$id;
+        $prod->save();
+
+         return redirect("producto_destacado");
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ProductosDestacado  $productosDestacado
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ProductosDestacado $productosDestacado)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ProductosDestacado  $productosDestacado
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ProductosDestacado $productosDestacado)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ProductosDestacado  $productosDestacado
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ProductosDestacado $productosDestacado)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ProductosDestacado  $productosDestacado
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ProductosDestacado $productosDestacado)
-    {
-        //
-    }
 }

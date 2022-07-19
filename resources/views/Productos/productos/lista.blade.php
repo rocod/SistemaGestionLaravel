@@ -14,9 +14,13 @@
                         <table class="table table-striped">
                           <thead>
                             <tr>
-                              <th scope="col">Nombre</th>
-                              <th scope="col">Imagen</th>
                               <th scope="col">Código</th>
+                              <th scope="col">Imagen</th>
+                              <th scope="col">Nombre</th>
+                              <th scope="col">Precio</th>
+                              <th scope="col">Descripción</th>
+                             
+                              <th scope="col">Dest.</th>
                               <th scope="col"></th>
                               <th scope="col">
                                 <a class="text-success" href="/agregar_producto" title="Agregar nueva producto">
@@ -28,9 +32,15 @@
                           <tbody>
                             @foreach($productos as $producto)
                             <tr>
-                              <td>{{ $producto->nombre }}</td>
-                              <td>{{ $producto->imagen }}</td>
                               <td>{{ $producto->codigo }}</td>
+                              <td>@if($producto->imagen1)
+                               <img src="img/productos/{{ $producto->imagen1 }}" width="90" />
+                              @endif</td>
+                              <td>{{ $producto->nombre  }}</td>
+                              <td>{{ $producto->precio }}</td>
+                              <td>{{ $producto->descripcion }}</td>
+
+                              <td>@if($producto->destacado=='0') No @else Si @endif</td>
                               <td>
                                 <a title="Editar" class="text-info" href="{{ route('editarProductoForm', ['id'=>$producto->id]) }}">
                                     <i class="fas fa-pencil-alt fa-2x"></i>

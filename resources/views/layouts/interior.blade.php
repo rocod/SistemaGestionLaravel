@@ -69,7 +69,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                       
                         <a class="collapse-item" href="/productos">Listado Completo</a>
-                        <a class="collapse-item" href="/carga_multiple">Carga/Actualización Múltiple</a>
+                        <a class="collapse-item" href="/carga_multiple">Carga/Edición Múltiple</a>
 
                         <a class="collapse-item" href="/producto_destacado">Producto Destacado</a>
 

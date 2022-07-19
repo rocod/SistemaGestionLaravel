@@ -104,11 +104,18 @@ class SubsubcategoriaController extends Controller
             
         if($subsubcategorias)
         {
-        foreach ($subsubcategorias as $key => $subsubcategoria) {
+            foreach ($subsubcategorias as $key => $subsubcategoria) {
           
-         
-            $output.=
-                        '<option value="'.$subsubcategoria->id.'">'.$subsubcategoria->opcion.'</option>';
+                if($request->producto_id){
+
+                    $output.='<option value="'.$subsubcategoria->id.'">'.$subsubcategoria->opcion.'</option>';
+
+                }else{
+
+                    $output.='<option value="'.$subsubcategoria->id.'">'.$subsubcategoria->opcion.'</option>';
+
+                }
+                
             }
             
             }

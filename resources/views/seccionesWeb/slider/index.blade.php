@@ -26,7 +26,7 @@
                                 @foreach($sliders as $slider)
                                 <tr>
                                     <td>
-                                        <img src="{{ $slider->imagen }}">
+                                        <img src="{{ $slider->imagen }}" width="800">
                                     </td>
                                     <td>
                                         <a title="Eliminar" class="text-info" href="{{ route('eliminarSliderForm', $slider) }}">

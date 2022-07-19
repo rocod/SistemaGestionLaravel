@@ -18,6 +18,7 @@ class Producto extends Model
         'precio',
         'costo',
         'costo_dolar',
+        'proveedor_id',
         'precio_may',
         'descripcion',
         'imagen1',
